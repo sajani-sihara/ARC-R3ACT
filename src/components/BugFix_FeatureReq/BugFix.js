@@ -1,3 +1,11 @@
+{
+  /* 
+  Page      - BugFix.js page
+  Function  - Shows the bug fix keywords relevant to the chosen app
+  Author    - Sajani Sihara, Ridmi Amasha
+*/
+}
+
 import React, { useEffect, useState } from "react";
 import { Link,useLocation} from "react-router-dom";
 import LoadingBox from "../Error/LoadingBox";
@@ -43,13 +51,17 @@ function BugFix() {
   } else {
   return (
     <div>
+       {/*Adding the background image*/}
       <div class="bgimg-14">
+         {/*Adding the main heading */}
         <div class="caption">
           <span className="border">
             Bug fixes requested by the users of this app
           </span>
         </div>
       </div>
+
+      {/*The keywords will be in divs descrip-10 and descrip-11 alternatively*/}
       <div>
       {items.map((item) => (
               <div key={item} style={{ listStyleType: "none" }}>
@@ -61,11 +73,14 @@ function BugFix() {
               </div>
             ))}
         
+        {/*div contains the button to view the reviews without a particular keyword */}
         <div className="descrip-11">
           <div className="container text-center">
+            {/*clicking on the button will lead to the remainingBF.js page */}
             <Link to={{
               pathname:currentURL+'/remainingBF'
             }}>
+              {/*Button to view the rest of the reviews */}
             <Button
               variant="secondary"
               className="mx-4 bugDescripBtn"

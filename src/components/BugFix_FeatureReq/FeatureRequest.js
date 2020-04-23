@@ -1,3 +1,10 @@
+{
+  /* 
+  Page      - FeatureRequest.js page
+  Function  - Shows the feature request keywords relevant to the chosen app
+  Author    - Sajani Sihara, Ridmi Amasha
+*/
+}
 import React, { useEffect, useState } from "react";
 import { Link,useLocation} from "react-router-dom";
 import LoadingBox from "../Error/LoadingBox";
@@ -38,13 +45,16 @@ function FeatureRequest() {
   } else {
   return (
     <div>
+       {/*Adding the background image*/}
       <div class="bgimg-15">
+         {/*Adding the main heading */}
         <div class="caption">
           <span className="border">
             App features requested by the users of this app
           </span>
         </div>
       </div>
+       {/*The keywords will be in divs descrip-12 and descrip-13 alternatively*/}
       <div>
       {items.map((item) => (
               <div key={item} style={{ listStyleType: "none" }}>
