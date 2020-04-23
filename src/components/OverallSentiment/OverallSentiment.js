@@ -4,12 +4,17 @@ import ErrorPage from "../Error/Crashed";
 import Footer from "../NavigationBar/Footer";
 
 function OverallSentiment() {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [error, setError] = useState(null);
-  const [items, setItems] = useState([]);
+ //props and state for loading
+ const [isLoaded, setIsLoaded] = useState(false);
+ //props and state for error checking
+ const [error, setError] = useState(null);
+ //props and state for retrieve data from api
+ const [items, setItems] = useState([]);
 
-  const app = localStorage.getItem("appName")
+  //Get localstorage value of appName
+  const app =  localStorage.getItem('appName');
 
+  //fetches the sentiment api for given app id
   useEffect(() => {
     fetch("http://localhost:5000/sentiment/"+app)
       .then((res) => res.json())
@@ -23,7 +28,7 @@ function OverallSentiment() {
           setError(error);
         }
       );
-  }, []);
+  }, [app]);
 
   if (error) {
     return <ErrorPage errorDet={error.message} />;
@@ -39,6 +44,7 @@ function OverallSentiment() {
                 <div className="col-3">
                   <div className="row m-2">
                     <img
+                      alt="app logo"
                       src={item.icon}
                       style={{ borderRadius: "1.6vw", width: "10vw" }}
                     />

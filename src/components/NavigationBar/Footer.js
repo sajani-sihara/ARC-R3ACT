@@ -68,16 +68,16 @@ function Footer() {
                 style={{ width: "4vw", backgroundColor:'#fff' }}
               />
               <p style={{marginBottom:"1.06vw",height:"2vw"}}>
-                <a href="/" style={{color:"#fff", fontSize:"1.1vw"}}>Home</a>
+                <a href="/#" style={{color:"#fff", fontSize:"1.1vw"}}>Home</a>
               </p>
               <p style={{marginBottom:"1.06vw",height:"2vw"}}>
-                <a href="/aboutus" style={{color:"#fff", fontSize:"1.1vw"}}>About</a>
+                <a href="/#aboutus" style={{color:"#fff", fontSize:"1.1vw"}}>About</a>
               </p>
               <p style={{marginBottom:"1.06vw",height:"2vw"}}>
-                <a href="/support" style={{color:"#fff", fontSize:"1.1vw"}}>Support</a>
+                <a href="/#support" style={{color:"#fff", fontSize:"1.1vw"}}>Support</a>
               </p>
               <p style={{marginBottom:"1.06vw",height:"2vw"}}>
-                <a href="/contact" style={{color:"#fff", fontSize:"1.1vw"}}>Contact</a>
+                <a href="/#contact" style={{color:"#fff", fontSize:"1.1vw"}}>Contact</a>
               </p>
             </div>
 
@@ -103,7 +103,7 @@ function Footer() {
       <div style={{ backgroundColor: "#151b27", color: "white",fontSize:"1vw" }}>
         <div className="footer-copyright text-center py-3">
           © 2020 Copyright:
-          <a href="!#"style={{color:"#fff",fontSize:"1vw"}}> applicationreviewclassifier.com</a>
+          <a href="!#" style={{color:"#fff",fontSize:"1vw"}}> applicationreviewclassifier.com</a>
         </div>
       </div>
     </div>

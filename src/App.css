@@ -680,10 +680,16 @@ Sidebar wrapper styles
 }
 
 /* width of video will exapnd through the browser window*/
-video {
+#homeVideo{
   width: 100%;
 }
-
+#loadingvideo{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
 /* this is the main heading - we analyse mobile app reviews*/
 .content {
   position: absolute;
@@ -1069,6 +1075,7 @@ video {
   font-size: 1.3vw;
   color: #282e34;
   font-weight: 600;
+  width: 35%;
 }
 .commentInput:active {
   border: none;
@@ -1080,6 +1087,8 @@ video {
   font-weight: 600;
   background-color: #282e34;
   border: none;
+  width: 15%;
+  border-radius:1.5vw;
 }
 .commentSubmit:hover {
   box-shadow: 0 0.2vw 0.5vw 0 rgba(12, 10, 10, 0.897);

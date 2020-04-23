@@ -1,22 +1,24 @@
-{
+
   /* 
   Page      - AboutUs.js page
   Function  - Provides information regarding ARC and the team members
   Author    - Sajani Sihara
 */
-}
+
 
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Footer from "../NavigationBar/Footer";
 
+
+
 function AboutUs() {
   return (
     <Container fluid style={{ boxSizing: "border-box" }}>
       {/*Adding the background image*/}
-      <div class="bgimg-7">
+      <div className="bgimg-7">
         {/*Adding the main heading */}
-        <div class="caption">
+        <div className="caption">
           <span className="border">
             Helping mobile application developers move forward.
           </span>
@@ -61,11 +63,11 @@ function AboutUs() {
       </div>
 
       {/*The second background image */}
-      <div class="bgimg-8">
+      <div className="bgimg-8">
         {/*Adding text about the team */}
-        <div class="caption">
+        <div className="caption">
           <span
-            class="border"
+            className="border"
             style={{
               backgroundColor: "#282e34",
               fontSize: "2vw",
@@ -113,27 +115,27 @@ function AboutUs() {
         </div>
       </div>
       {/*The third background image */}
-      <div class="bgimg-9">
+      <div className="bgimg-9">
         {/*Starting the new div meet the team */}
-        <div class="caption">
-          <span class="border">MEET THE MEMBERS OF TEAM R3ACT</span>
+        <div className="caption">
+          <span className="border">MEET THE MEMBERS OF TEAM R3ACT</span>
         </div>
       </div>
       {/*Styling the new div that will hold the info regarding the team members */}
       <div className="descrip-7">
         {/*First row will have Safiyyah, Christina and Sajani */}
-        <div class="row">
+        <div className="row">
           {/*Safiyyah Rahman Card */}
-          <div class="columnTeam">
+          <div className="columnTeam">
             {/*div for one card */}
-            <div class="cardTeam">
+            <div className="cardTeam">
               {/*div to hold the image */}
               <div className="imageContainer" style={{ padding: "2.85vw" }}>
                 {/*the image is in a div container because on hover the image will change to show the team member's role */}
                 <div className="imageTeam"></div>
               </div>
               {/*div to hold the name and github link */}
-              <div class="containerTeam">
+              <div className="containerTeam">
                 <h3 className="nameTeam">Safiyyah Rahman</h3>
                 <a href="https://github.com/SafiyyahR" className="githubLinks">
                   <p style={{ fontSize: "1vw" }}>github : SafiyyahR</p>
@@ -143,16 +145,16 @@ function AboutUs() {
           </div>
 
           {/*Christina Thambirajah Card */}
-          <div class="columnTeam">
+          <div className="columnTeam">
             {/*div for one card */}
-            <div class="cardTeam">
+            <div className="cardTeam">
               {/*div to hold the image */}
               <div className="imageContainer" style={{ padding: "2.85vw" }}>
                 {/*the image is in a div container because on hover the image will change to show the team member's role */}
                 <div className="imageTeam1"></div>
               </div>
               {/*div to hold the name and github link */}
-              <div class="containerTeam">
+              <div className="containerTeam">
                 <h3 className="nameTeam" style={{ fontSize: "1vw" }}>
                   Christina Thambirajah
                 </h3>
@@ -169,16 +171,16 @@ function AboutUs() {
           </div>
 
           {/*Sajani Sihara Card */}
-          <div class="columnTeam">
+          <div className="columnTeam">
             {/*div for one card */}
-            <div class="cardTeam">
+            <div className="cardTeam">
               {/*div to hold the image */}
               <div className="imageContainer" style={{ padding: "2.85vw" }}>
                  {/*the image is in a div container because on hover the image will change to show the team member's role */}
                 <div className="imageTeam2"></div>
               </div>
               {/*div to hold the name and github link */}
-              <div class="containerTeam">
+              <div className="containerTeam">
                 <h3 className="nameTeam">Sajani Sihara</h3>
                 <a
                   href="https://github.com/sajani-sihara"
@@ -192,18 +194,18 @@ function AboutUs() {
         </div>
 
 {/*Second row will contain info regarding Rdimi, Aarthif and Shiromi */}
-        <div class="row" style={{ paddingTop: "1.3vw" }}>
+        <div className="row" style={{ paddingTop: "1.3vw" }}>
           {/*Ridmi Amasha Card */}
-          <div class="columnTeam">
+          <div className="columnTeam">
             {/*div for one card */}
-            <div class="cardTeam">
+            <div className="cardTeam">
               {/*div to hold the image */}
               <div className="imageContainer" style={{ padding: "2.85vw" }}>
                  {/*the image is in a div container because on hover the image will change to show the team member's role */}
                 <div className="imageTeam3"></div>
               </div>
               {/*div to hold the name and github link */}
-              <div class="containerTeam">
+              <div className="containerTeam">
                 <h3 className="nameTeam">Ridmi Amasha</h3>
                 <a href="https://github.com/ridmi98" className="githubLinks">
                   <p style={{ fontSize: "1vw" }}>github : ridmi98</p>
@@ -213,16 +215,16 @@ function AboutUs() {
           </div>
 
           {/*Aarthif Nawaz Card */}
-          <div class="columnTeam">
+          <div className="columnTeam">
             {/*div for one card */}
-            <div class="cardTeam">
+            <div className="cardTeam">
               {/*div to hold the image */}
               <div className="imageContainer" style={{ padding: "2.85vw" }}>
                  {/*the image is in a div container because on hover the image will change to show the team member's role */}
                 <div className="imageTeam4"></div>
               </div>
               {/*div to hold the name and github link */}
-              <div class="containerTeam">
+              <div className="containerTeam">
                 <h3 className="nameTeam">Aarthif Nawaz</h3>
                 <a
                   href="https://github.com/Aarthif-Nawaz"
@@ -235,16 +237,16 @@ function AboutUs() {
           </div>
 
           {/*Shiromi Thevarajan Card */}
-          <div class="columnTeam">
+          <div className="columnTeam">
             {/*div for one card */}
-            <div class="cardTeam">
+            <div className="cardTeam">
               {/*div to hold the image */}
               <div className="imageContainer" style={{ padding: "2.85vw" }}>
                 {/*the image is in a div container because on hover the image will change to show the team member's role */} 
                 <div className="imageTeam5"></div>
               </div>
               {/*div to hold the name and github link */}
-              <div class="containerTeam">
+              <div className="containerTeam">
                 <h3 className="nameTeam">Shiromi Thevarajan</h3>
                 <a
                   href="https://github.com/shiromi-basil"

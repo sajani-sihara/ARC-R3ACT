@@ -1,15 +1,24 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
-//import Container from "react-bootstrap/Container";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "../../App.css";
 
+/**
+ * Review Component
+ * @param {*} props from the ViewReview.js
+ * Uses the props pass, to show the data
+ */
+
 function Review(props) {
 
+  //Current url object in the browser stored into location variable
   let location = useLocation();
+  //Gets the current url path name
   const currentURL = location.pathname;
-  console.log(currentURL);
+
+  //console.log(currentURL);
+
   return (
     <div className="col-8 container-fluid" style={{ padding: 0 }}>
       <div style={{width:"45vw"}}>
@@ -23,6 +32,8 @@ function Review(props) {
         <p>Review : {props.text}</p>
         </div>
       <div className="container text-right">
+
+        {/*Sends the data to the '/:reviewId' to view the individual review' */}
         <Link to={{
           pathname: currentURL + '/' + props.id,
           state: {

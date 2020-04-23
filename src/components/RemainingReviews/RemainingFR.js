@@ -8,14 +8,17 @@ import Review from "../Review/Review";
 import Footer from "../NavigationBar/Footer";
 
 function RemainingFR() {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [error, setError] = useState(null);
-  const [items, setItems] = useState([]);
+
+ //props and state for loading
+ const [isLoaded, setIsLoaded] = useState(false);
+ //props and state for error checking
+ const [error, setError] = useState(null);
+ //props and state for retrieve data from api
+ const [items, setItems] = useState([]);
 
   //Get localstorage value of appName
-  
   const app =  localStorage.getItem('appName');
-  console.log(app);
+  //console.log(app);
 
   useEffect(() => {
     fetch("http://localhost:5000/featurereqs/common/"+app)
@@ -30,7 +33,7 @@ function RemainingFR() {
           setError(error);
         }
       );
-  }, []);
+  }, [app]);
 
   if (error) {
     return <ErrorPage errorDet={error.message} />;
@@ -50,7 +53,7 @@ function RemainingFR() {
       {items.map((item) => (
               <div key={item} style={{ listStyleType: "none" }}>
                 <div className={"descrip-" + (items.indexOf(item) % 2 ? "16" : "17")}>
-                  {/* author={item.userName} date={item.date} score={item.rating} text={item.text} */}
+                 
 
                   <Review
                     id={item._id}

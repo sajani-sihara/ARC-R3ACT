@@ -1,10 +1,10 @@
-{
+
   /* 
   Page      - BugFix.js page
   Function  - Shows the bug fix keywords relevant to the chosen app
   Author    - Sajani Sihara, Ridmi Amasha
 */
-}
+
 
 import React, { useEffect, useState } from "react";
 import { Link,useLocation} from "react-router-dom";
@@ -17,18 +17,24 @@ import "../../App.css";
 import Footer from "../NavigationBar/Footer";
 
 function BugFix() {
+  //Uses the current url object into location variable
   let location = useLocation();
+  //Stores the pathname of the current browser page
   const currentURL = location.pathname;
   
+  
+  //props and state for loading
   const [isLoaded, setIsLoaded] = useState(false);
+  //props and state for error checking
   const [error, setError] = useState(null);
+  //props and state for retrieve data from api
   const [items, setItems] = useState([]);
 
   //Get localstorage value of appName
-  
   const app =  localStorage.getItem('appName');
-  console.log(app);
+  //console.log(app);
 
+  //calls the keywords api
   useEffect(() => {
     fetch("http://localhost:5000/bugfixes/keywords/"+app)
       .then((res) => res.json())
@@ -42,7 +48,7 @@ function BugFix() {
           setError(error);
         }
       );
-  }, []);
+  }, [app]);
 
   if (error) {
     return <ErrorPage errorDet={error.message} />;

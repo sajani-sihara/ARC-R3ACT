@@ -85,7 +85,7 @@ function App() {
                             )}
                           />
                           <Route
-                            path={url + "/remainingFR"}
+                            path={url + "/remainingFeatureRequests"}
                             render={({ match: { url } }) => (
                               <>
                                 <Route
@@ -145,7 +145,7 @@ function App() {
                             )}
                           />
                           <Route
-                            path={url + "/remainingFR"}
+                            path={url + "/remainingFeatureRequests"}
                             render={({ match: { url } }) => (
                               <>
                                 <Route
