@@ -42,21 +42,31 @@ function Sentiment() {
               <h3 style={{ fontSize: "1.3rem", paddingBottom: "1vw" }}>
                 background
               </h3>
-              <div style={{ float: "left", width: "20%" }}>
-                <img
-                  className="img-responsive m-2 ml-5  searchAppsImages"
-                  width="100px"
-                  height="100px"
-                  alt="search app logo"
-                  src={process.env.PUBLIC_URL + "/images/fb.png"}
-                />
-              </div>
-              <div style={{ float: "right", width: "65%", textAlign: "left" }}>
-                <p>Facebook</p>
-                <p>Facebook Developer</p>
-                <p style={{ fontStyle: "italic", width: "90%" }}>
-                  "Social media app to connect with friends all over the world!"
-                </p>
+              <div class="row">
+                <div style={{ float: "left", width: "30%" }}>
+                  <img
+                    className="img-responsive m-2 ml-5  searchAppsImages"
+                    width="100px"
+                    height="100px"
+                    alt="search app logo"
+                    src={process.env.PUBLIC_URL + "/images/fb.png"}
+                  />
+                </div>
+                <div
+                  style={{
+                    float: "right",
+                    width: "70%",
+                    textAlign: "left",
+                    paddingLeft: "1vw",
+                  }}
+                >
+                  <p>Facebook</p>
+                  <p>Facebook Developer</p>
+                  <p style={{ fontStyle: "italic", width: "90%" }}>
+                    "Social media app to connect with friends all over the
+                    world!"
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -66,46 +76,62 @@ function Sentiment() {
               <h3 style={{ fontSize: "1.3rem", paddingBottom: "1vw" }}>
                 statistics
               </h3>
-              <div
-                style={{
-                  float: "left",
-                  width: "50%",
-                  textAlign: "left",
-                  paddingLeft: "3vw",
-                }}
-              >
-                <p>
-                  {" "}
-                  <FontAwesomeIcon
-                    className="faicon"
-                    style={{color:"#003396"}}
-                    icon={faArrowCircleDown}
-                  />{" "}
-                  Downloads
-                </p>
-                <p>
-                  <FontAwesomeIcon   style={{color:"#1750ac"}} className="faicon" icon={faComments} />{" "}
-                  Reviews
-                </p>
-                <p>
-                  <FontAwesomeIcon   style={{color:"#3373c4"}} className="faicon" icon={faTags} /> Price
-                </p>
-                <p>
-                  <FontAwesomeIcon   style={{color:"#5494da"}} className="faicon" icon={faDownload} /> Size
-                </p>
-              </div>
-              <div
-                style={{
-                  float: "left",
-                  width: "50%",
-                  textAlign: "left",
-                  paddingLeft: "6vw",
-                }}
-              >
-                <p>100,000,000+</p>
-                <p>3,000,000+</p>
-                <p>Free</p>
-                <p>60.0 MB</p>
+              <div class="row">
+                <div
+                  style={{
+                    float: "left",
+                    width: "50%",
+                    textAlign: "left",
+                    paddingLeft: "4vw",
+                  }}
+                >
+                  <p>
+                    {" "}
+                    <FontAwesomeIcon
+                      className="faicon"
+                      style={{ color: "#003396" }}
+                      icon={faArrowCircleDown}
+                    />{" "}
+                    Downloads
+                  </p>
+                  <p>
+                    <FontAwesomeIcon
+                      style={{ color: "#1750ac" }}
+                      className="faicon"
+                      icon={faComments}
+                    />{" "}
+                    Reviews
+                  </p>
+                  <p>
+                    <FontAwesomeIcon
+                      style={{ color: "#3373c4" }}
+                      className="faicon"
+                      icon={faTags}
+                    />{" "}
+                    Price
+                  </p>
+                  <p>
+                    <FontAwesomeIcon
+                      style={{ color: "#5494da" }}
+                      className="faicon"
+                      icon={faDownload}
+                    />{" "}
+                    Size
+                  </p>
+                </div>
+                <div
+                  style={{
+                    float: "left",
+                    width: "50%",
+                    textAlign: "left",
+                    paddingLeft: "5vw",
+                  }}
+                >
+                  <p>100,000,000+</p>
+                  <p>3,000,000+</p>
+                  <p>Free</p>
+                  <p>60.0 MB</p>
+                </div>
               </div>
             </div>
           </div>
@@ -192,7 +218,7 @@ function Sentiment() {
 
           <div class="columnSenti">
             <div class="cardSenti">
-              <h3 style={{ fontSize: "1.3rem", paddingBottom: "1vw" }}>
+              <h3 style={{ fontSize: "1.3rem", paddingBottom: "2vw" }}>
                 reviews
               </h3>
               <p style={{ paddingBottom: "1vw" }}>
@@ -200,29 +226,33 @@ function Sentiment() {
                 sections - bug fixes and feature requests. You can view the
                 related reviews using the options below.
               </p>
-              <div style={{ float: "left", width: "50%" }}>
-                <button
-                  className="card p-3"
-                  style={{
-                    fontSize: "0.9rem",
-                    fontWeight: 600,
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Bug Fixes
-                </button>
-              </div>
-              <div style={{ float: "right", width: "50%" }}>
-                <button
-                  className="card p-3"
-                  style={{
-                    fontSize: "0.9rem",
-                    fontWeight: 600,
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Feature Requests
-                </button>
+              <div class="row">
+                <div style={{ float: "left", width: "50%", paddingLeft:"2.5vw", paddingBottom:"2vw" }}>
+                  <button
+                    className="card p-3"
+                    style={{
+                      fontSize: "0.9rem",
+                      fontWeight: 600,
+                      textTransform: "uppercase",
+                      width:"15vw"
+                    }}
+                  >
+                    Bug Fixes
+                  </button>
+                </div>
+                <div style={{ float: "right", width: "50%" }}>
+                  <button
+                    className="card p-3"
+                    style={{
+                      fontSize: "0.9rem",
+                      fontWeight: 600,
+                      textTransform: "uppercase",
+                      width:"15vw"
+                    }}
+                  >
+                    Feature Requests
+                  </button>
+                </div>
               </div>
             </div>
           </div>
