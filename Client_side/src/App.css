@@ -1238,7 +1238,7 @@ Sidebar wrapper styles
   background: rgba(5, 5, 5, 0.377);
   overflow-x: hidden;
   overflow-y: auto;
-  text-transform: uppercase;
+  text-transform: lowercase;
 }
 /* width */
 .sidenav::-webkit-scrollbar {
@@ -1262,6 +1262,15 @@ Sidebar wrapper styles
   font: "Lato" sans-serif 1.3rem;
   font-weight: 600;
   color: #ffffff;
+  display: block;
+}
+
+.sidenav-title{
+  padding: 0.4vw;
+  text-decoration: none;
+  font: "Lato" sans-serif 1.3rem;
+  font-weight: 600;
+  color: #000;
   display: block;
 }
 

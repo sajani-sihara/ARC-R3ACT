@@ -22,14 +22,11 @@ import SearchPage from "./components/Search/SearchPage";
 import BugFixPage from "./components/BugFix_FeatureReq/BugFixPage";
 import FeatureRequestPage from "./components/BugFix_FeatureReq/FeatureRequestPage";
 import MenuPage from "./components/Menu/MenuPage";
-
 function App() {
   return (
     <Router>
       {/*  */}
       <Route path="/searchpage" exact component={SearchPage} />
-      <Route path="/bfpage" exact component={BugFixPage} />
-      <Route path="/frpage" exact component={FeatureRequestPage} />
       <Route path="/menupage" exact component={MenuPage} />
       <NavBar />
       <Route path="/aboutus" exact component={AboutUs} />
@@ -39,7 +36,8 @@ function App() {
       <Switch>
         <Route path="/" exact component={HomePage} />
         <Route path="/loading" component={LoadingBox} />
-
+        <Route path="/bfpage/:appId" exact component={BugFixPage} />
+        <Route path="/frpage/:appId" exact component={FeatureRequestPage} />
         <Route path="/error" exact component={ErrorCrash} />
         <Route path="/loading" exact component={LoadingBox} />
 

@@ -23,7 +23,7 @@ class PlayStoreAppReviewClassifier:
         if len(sys.argv) == 3:
             # the list of keywords that should not be used to group the reviews
             notKeywords = ["fix", "issue",
-                           "problem", "application", "app", "not", "nt","update","feature","error"]
+                           "problem", "application", "app", "not", "nt", "update", "feature", "error","driver"]
             # retrieve the collection from the db
             collection = db["MobileApplications"]
             # uses the second argument passed
@@ -127,8 +127,21 @@ class PlayStoreAppReviewClassifier:
                 # if the cluster predicted is either BugFixes or FeatureRequests
                 # then the keywords key value pair and the preprocessed text is
                 # appended to the json object created above
+                lowerCaseSplitReview = review['text'].lower().split(" ")
+                splitReview = review['text'].split(" ")
+                if(len(keywords[i])!=0):
+                    lastKeyword = keywords[i][len(keywords[i]) - 1]
+                    try:
+                        indexOfLastKey = lowerCaseSplitReview.index(lastKeyword)
+                        partialReviewArray = splitReview[0: indexOfLastKey + 1]
+                        partialReview = ' '.join(partialReviewArray)
+                    except ValueError:
+                        partialReview = review["text"]
+                else:
+                    partialReview=review["text"]
                 pre_processed_review.update(
-                    {"keywords": keywords[i], "fe_preprocessedReview": fe_preprocessedReviews[i]})
+                    {"keywords": keywords[i], "fe_preprocessedReview": fe_preprocessedReviews[i],
+                     'partialReview': partialReview})
             # append the json objects to an array
             pre_processedReviews.append(pre_processed_review)
             # increase the index by 1
@@ -300,7 +313,7 @@ try:
     playStoreARC = PlayStoreAppReviewClassifier()
     message = playStoreARC.classify_reviews()
 except:
-    message = "DB Error"
+     message = "DB Error"
 finally:
 # print the message variable so the when sys.stdout.flush
     print(str(message))

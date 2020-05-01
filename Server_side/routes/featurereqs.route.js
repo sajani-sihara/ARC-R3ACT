@@ -14,8 +14,7 @@ var featurereqController = require("../controllers/featurereqs.controller");
  * Routes serving feature requests page.
  */
 
-router.post("/keywords/:appId", featurereqController.retrieveKeywords);
-router.post("/reviews/:appId/:keyword", featurereqController.relatedReviews);
-router.post("/common/:appId/", featurereqController.commonReviews);
-
+router.post("/:appId/keywords", featurereqController.retrieveKeywords);
+router.post("/:appId/:keyword", featurereqController.relatedReviews);
+router.post("/:appId/", featurereqController.featureRequests);
 module.exports = router;
