@@ -1288,11 +1288,12 @@ Sidebar wrapper styles
   columns: 2 auto;
 }
 
+/*-----------overall sentiment cards------------*/
 .columnSenti {
   float: left;
   width: 40%;
   padding: 0 10px;
-  margin: 4vw;
+  margin: 2vw;
 }
 
 /* Remove extra left and right margins, due to padding */
@@ -1328,6 +1329,7 @@ Sidebar wrapper styles
   margin-right: 10px;
 }
 
+/*------------------user ratings box-----------------*/
 .heading {
   font-size: 1.4 rem;
   text-align: left;
@@ -1345,13 +1347,15 @@ Sidebar wrapper styles
 .side {
   float: left;
   width: 15%;
+  margin-right: 10px;
   margin-top: 10px;
+
 }
 
 .middle {
-  margin-top: 10px;
+  margin-top: 20px;
   float: left;
-  width: 70%;
+  width: 60%;
 }
 
 /* Place text to the right */
@@ -1368,7 +1372,7 @@ Sidebar wrapper styles
 
 /* The bar container */
 .bar-container {
-  width: 80%;
+  width: 100%;
   background-color: #ccc7c7;
   text-align: center;
   color: white;

@@ -18,8 +18,8 @@ function SearchBox(props) {
           <img
             // className="searchAppsImages"
             className="img-responsive m-2  searchAppsImages"
-            width="150px"
-            height="150px"
+            width="100px"
+            height="100px"
             alt="search app logo"
             src={props.icon}
           />

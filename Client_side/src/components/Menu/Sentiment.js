@@ -145,7 +145,7 @@ function Sentiment() {
               </h3>
               <p class="heading">
                 User Rating
-                <FontAwesomeIcon className="checked" icon={faStar} />
+                <FontAwesomeIcon  style={{marginLeft:"14vw"}}className="checked" icon={faStar} />
                 <FontAwesomeIcon className="checked" icon={faStar} />
                 <FontAwesomeIcon className="checked" icon={faStar} />
                 <FontAwesomeIcon icon={faStar} />
