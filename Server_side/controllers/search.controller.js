@@ -12,7 +12,7 @@ var gplay = require("google-play-scraper");
  * to the name entered by the user.
  */
 exports.searchApp = async function (request, response) {
-  var numOfApps = 5; // The number of similar apps to be displayed
+  var numOfApps = 6; // The number of similar apps to be displayed
   var appArray = []; // An array to hold all the details of the similar apps
   gplay
     .search({
@@ -35,8 +35,10 @@ exports.searchApp = async function (request, response) {
           var installs = result[i].installs;
           var rating = result[i].scoreText;
           var price = result[i].priceText;
+          title = title.split(/[:-]+/);
+          var newTitle = title[0].trim();
           appArray.push({
-            title,
+            newTitle,
             appId,
             developer,
             icon,
