@@ -22,11 +22,12 @@ import SearchPage from "./components/Search/SearchPage";
 import BugFixPage from "./components/BugFix_FeatureReq/BugFixPage";
 import FeatureRequestPage from "./components/BugFix_FeatureReq/FeatureRequestPage";
 import MenuPage from "./components/Menu/MenuPage";
+import Sentiment from "./components/Menu/Sentiment";
 function App() {
   return (
     <Router>
       {/*  */}
-      
+      <Route path="/sentiment" exact component={Sentiment} />
       <Route path="/menupage" exact component={MenuPage} />
       <NavBar />
       <Route path="/aboutus" exact component={AboutUs} />

@@ -454,8 +454,8 @@ html {
   background-image: url("/images/reviews.jpg");
 }
 .bgimg-16 {
-  min-height: 53.3vw;
-  background-image: url("/images/laptop7.jpg");
+  min-height: 25vw;
+  background-image: url("/images/sentiment.jpg");
 }
 .bgimg-17 {
   min-height: 53.3vw;
@@ -491,9 +491,9 @@ html {
   display: table;
   clear: both;
 }
-#contactDescription{
+#contactDescription {
   background-color: #282e34;
-  border-radius: 1vw;;
+  border-radius: 1vw;
 }
 
 /* Responsive columns */
@@ -605,7 +605,7 @@ h3 {
   padding: 0vw;
   height: 0vw;
 }
-#navigation_bar:active{
+#navigation_bar:active {
   text-decoration: none;
 }
 /*Burger menu bar*/
@@ -644,10 +644,10 @@ h3 {
   text-decoration: none;
 }
 
-.menu-item:hover{
+.menu-item:hover {
   text-decoration: none;
 }
-.menu-item a:active{
+.menu-item a:active {
   text-decoration: none;
 }
 
@@ -1241,13 +1241,13 @@ Sidebar wrapper styles
 
 /* Track */
 .sidenav::-webkit-scrollbar-track {
-  background:transparent;
+  background: transparent;
   border-radius: 5px;
 }
- 
+
 /* Handle */
 .sidenav::-webkit-scrollbar-thumb {
-  background: rgba(5, 5, 5, 0.377); 
+  background: rgba(5, 5, 5, 0.377);
   border-radius: 5px;
 }
 .sidenav a {
@@ -1259,7 +1259,7 @@ Sidebar wrapper styles
   display: block;
 }
 
-.sidenav-title{
+.sidenav-title {
   padding: 0.4vw;
   text-decoration: none;
   font: "Lato" sans-serif 1.3rem;
@@ -1284,6 +1284,130 @@ Sidebar wrapper styles
   background-color: #282e34;
   color: #fff;
 }
-.search_container{
+.search_container {
   columns: 2 auto;
+}
+
+.columnSenti {
+  float: left;
+  width: 40%;
+  padding: 0 10px;
+  margin: 4vw;
+}
+
+/* Remove extra left and right margins, due to padding */
+.rowSenti {
+  margin: 0 -5px;
+}
+
+/* Clear floats after the columns */
+.rowSenti:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .columnSenti {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.cardSenti {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  color: #282e34;
+  background-color: #f1f1f1;
+}
+.faicon {
+  margin-right: 10px;
+}
+
+.heading {
+  font-size: 1.4 rem;
+  text-align: left;
+}
+
+.fa {
+  font-size: 25px;
+}
+
+.checked {
+  color: #73b9ee;
+}
+
+/* Three column layout */
+.side {
+  float: left;
+  width: 15%;
+  margin-top: 10px;
+}
+
+.middle {
+  margin-top: 10px;
+  float: left;
+  width: 70%;
+}
+
+/* Place text to the right */
+.right {
+  text-align: right;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* The bar container */
+.bar-container {
+  width: 80%;
+  background-color: #ccc7c7;
+  text-align: center;
+  color: white;
+}
+
+/* Individual bars */
+.bar-5 {
+  width: 70%;
+  height: 18px;
+  background-color: #003396;
+}
+.bar-4 {
+  width: 50%;
+  height: 18px;
+  background-color: #1750ac;
+}
+.bar-3 {
+  width: 40%;
+  height: 18px;
+  background-color: #3373c4;
+}
+.bar-2 {
+  width: 30%;
+  height: 18px;
+  background-color: #5494da;
+}
+.bar-1 {
+  width: 20%;
+  height: 18px;
+  background-color: #73b9ee;
+}
+
+/* Responsive layout - make the columns stack on top of each other instead of next to each other */
+@media (max-width: 400px) {
+  .side,
+  .middle {
+    width: 100%;
+  }
+  .right {
+    display: none;
+  }
 }
