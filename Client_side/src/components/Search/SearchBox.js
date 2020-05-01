@@ -7,63 +7,55 @@
 
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowCircleDown ,faStar} from "@fortawesome/free-solid-svg-icons";
+import { faArrowCircleDown, faStar } from "@fortawesome/free-solid-svg-icons";
 
 function SearchBox(props) {
   return (
-    <div>
-      <div className= "mx-auto " style={{width:'650px'}}>
-       <div className='container mb-3 border-bottom border-secondary'>
-        <div className="row m-3">
-          <div className="col-md-4 m-2">
-           
-            {" "}
-            <img
-             // className="searchAppsImages"
-             className='img-responsive m-2  searchAppsImages'
-             width="150px"
-             height="150px"
-              alt="search app logo"
-              src={process.env.PUBLIC_URL + "/images/sajani.jpg"}
-            />
-          
-            
+    <div className="container">
+      <div className="row m-3">
+        <div className="col-md-4 m-2">
+          {" "}
+          <img
+            // className="searchAppsImages"
+            className="img-responsive m-2  searchAppsImages"
+            width="150px"
+            height="150px"
+            alt="search app logo"
+            src={props.icon}
+          />
+        </div>
+        <div className="col m-2">
+          <div className="row m-2">
+            <h3>{props.title}</h3>{" "}
           </div>
-          <div className="col m-2">
-          <div className="row m-2" >
-          <h3 >
-              facebook
-            </h3>{" "}
-            </div>
-            <div className="row m-2" style={{ marginTop: "0.5vw" }}>
-              <p style={{fontSize:"1.2rem"}}>
-                Facebook Developer
-              </p>
-            </div>
-            <div className="row m-2" style={{ marginTop: "0.5vw", fontSize: "1.2rem" }}>
-            <p  className='mr-3'>
-              3.2<FontAwesomeIcon icon={ faStar } style={{ width: "2vw" }} /> 
-              </p>
-              <p className='mr-3' >
-               Free
-              </p>
-              <p className='mr-3'>
-              <FontAwesomeIcon icon={ faArrowCircleDown } style={{ width: "2vw" }} />100M+
-              </p>
-            </div>
+          <div className="row m-2" style={{ marginTop: "0.5vw" }}>
+            <p style={{ fontSize: "1.2rem" }}>{props.developer}</p>
           </div>
-          <div className='col-6'>
-           {/**Stars */}
-          </div>
-         
-        </div> 
-        <div className="row m-3">
-          <div className='col'>
-            <p style={{fontSize:"1.2rem"}}>Work hard. Have fun. Make history</p>
+          <div
+            className="row m-2"
+            style={{ marginTop: "0.5vw", fontSize: "1.2rem" }}
+          >
+            <p className="mr-3">
+              {props.rating}
+              <FontAwesomeIcon icon={faStar} style={{ width: "2vw" }} />
+            </p>
+            <p className="mr-3">{props.price}</p>
+            <p className="mr-3">
+              <FontAwesomeIcon
+                icon={faArrowCircleDown}
+                style={{ width: "2vw" }}
+              />
+              {props.installs}
+            </p>
           </div>
         </div>
+        <div className="col-6">{/**Stars */}</div>
       </div>
-      </div>
+      {/* <div className="row m-3">
+        <div className="col">
+          <p style={{ fontSize: "1.2rem",fontStyle:'Italic' }}>"{props.summary}"</p>
+        </div>
+      </div> */}
     </div>
   );
 }

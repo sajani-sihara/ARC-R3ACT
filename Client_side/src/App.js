@@ -26,7 +26,7 @@ function App() {
   return (
     <Router>
       {/*  */}
-      <Route path="/searchpage" exact component={SearchPage} />
+      
       <Route path="/menupage" exact component={MenuPage} />
       <NavBar />
       <Route path="/aboutus" exact component={AboutUs} />
@@ -34,6 +34,7 @@ function App() {
       <Route path="/contact" exact component={Contact} />
 
       <Switch>
+        <Route path="/searchpage" exact component={SearchPage} />
         <Route path="/" exact component={HomePage} />
         <Route path="/loading" component={LoadingBox} />
         <Route path="/bfpage/:appId" exact component={BugFixPage} />

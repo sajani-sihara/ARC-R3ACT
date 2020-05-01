@@ -894,12 +894,6 @@ Sidebar wrapper styles
   letter-spacing: 0.2vw;
   text-decoration: none;
 }
-
-.p-4:hover {
-  text-decoration: none;
-  background-color: rgb(88, 87, 87);
-  color: #fff;
-}
 /*--------------------- Begin: Loading Page----------------------*/
 /*LoadingBox.js - ANALYSING... text container*/
 .loadingContainer {
@@ -1289,4 +1283,7 @@ Sidebar wrapper styles
 .errorPageBtn:hover {
   background-color: #282e34;
   color: #fff;
+}
+.search_container{
+  columns: 2 auto;
 }
