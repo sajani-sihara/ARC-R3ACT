@@ -89,8 +89,11 @@ class Sentiment extends React.Component {
     this.setState({ details: result });
     if (!result.wait) {
       clearInterval(this.fetchInterval);
-      this.getItems(this.sentiURLString);
-      //   this.setState({ isLoaded: true });
+      if (result.message==="Sorry! The number of reviews is less than 100.") {
+        this.setState({ isLoaded: true });
+      }else{
+        this.getItems(this.sentiURLString);
+      }   
     }
   }
   getItems(urlString) {
@@ -205,7 +208,7 @@ function BackgroundDiv(props) {
           <div className="col-lg-8">
             <p>{data.title}</p>
             <p>{data.developer}</p>
-            <p style={{ fontStyle: "italic", width: "90%" ,textAlign:"justify"}}>"{data.summary}"</p>
+            <p style={{ fontStyle: "italic", width: "90%", textAlign: "justify" }}>"{data.summary}"</p>
           </div>
         </div>
       </div>

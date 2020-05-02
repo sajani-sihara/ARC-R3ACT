@@ -120,7 +120,7 @@ exports.storeDetails = async function (request, response) {
             // If the review count is less than 100,
             // send this error message to the client
             console.log("Sorry! The number of reviews is less than 100.");
-            response.send({
+            response.status(200).send({
               message: "Sorry! The number of reviews is less than 100.",
             });
           }
