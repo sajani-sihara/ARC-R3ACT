@@ -4,7 +4,7 @@
   Author    - Sajani Sihara, Ridmi Amasha
 */
 
-import React, { useRef } from "react";
+import React from "react";
 import FormValidation from "./FormValidation.js";
 
 function Form() {

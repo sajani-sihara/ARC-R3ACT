@@ -12,8 +12,7 @@ import Contact from "./components/Contact/Contact";
 import SearchPage from "./components/Search/SearchPage";
 import BugFixPage from "./components/BugFix_FeatureReq/BugFixPage";
 import FeatureRequestPage from "./components/BugFix_FeatureReq/FeatureRequestPage";
-import MenuPage from "./components/Menu/MenuPage";
-import Sentiment from "./components/Menu/Sentiment";
+import Sentiment from "./components/Sentiment/Sentiment";
 function App() {
   return (
     <Router>
@@ -23,9 +22,6 @@ function App() {
       <Route path="/aboutus" exact component={AboutUs} />
       <Route path="/support" exact component={Support} />
       <Route path="/contact" exact component={Contact} />
-      
-      <Route path="/menupage" exact component={MenuPage} />
-
       <Switch>
         <Route path="/sentiment/:appId" exact component={Sentiment} />
         <Route path="/" exact component={HomePage} />
