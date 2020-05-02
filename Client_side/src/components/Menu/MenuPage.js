@@ -28,16 +28,16 @@ function MenuPage(props) {
       </Helmet>
 
       <div className="bgimg-6">
-        <div className="col-7" style={{marginLeft:"28%"}}>
-          <div className="row" >
-          <h3
+        <div className="col-7" style={{ marginLeft: "28%" }}>
+          <div className="row">
+            <h3
               style={{
                 textAlign: "center",
                 padding: "1.3vw",
                 fontSize: "2rem",
                 marginTop: "10%",
-                marginBottom:"2%",
-                float:"left"
+                marginBottom: "2%",
+                float: "left",
               }}
             >
               Overlook of your application
@@ -112,9 +112,10 @@ function MenuPage(props) {
               </div>
             </div>
           </div>
-          <p style={{ fontSize: "1.3rem", marginLeft:"20%" }}>View reviews of your applications</p>
+          <p style={{ fontSize: "1.3rem", marginLeft: "20%" }}>
+            View reviews of your applications
+          </p>
           <div className="row m-3">
-         
             <div className="col-md-4 m-3">
               <button
                 className="card p-3"
