@@ -60,8 +60,9 @@ exports.storeDetails = async function (request, response) {
       gplay
         .app({
           appId: request.params.appId, // App id of the app selected by the user
-        }).catch(async (error) =>{
-          return response.status(500).send({message:error.toString()});
+        })
+        .catch(async (error) => {
+          return response.status(500).send({ message: error.toString() });
         })
         //   .then(console.log, console.log);
         .then(async (result) => {
@@ -75,6 +76,7 @@ exports.storeDetails = async function (request, response) {
           var developer = result.developer;
           var genre = result.genre;
           var icon = result.icon;
+          var releasedDate = result.released;
           detailsArray.push({
             // Push them into the array
             appId,
@@ -86,6 +88,7 @@ exports.storeDetails = async function (request, response) {
             developer,
             genre,
             icon,
+            releasedDate,
           });
 
           currentDetailsArray.push({
@@ -120,9 +123,10 @@ exports.storeDetails = async function (request, response) {
               message: "Sorry! The number of reviews is less than 100.",
             });
           }
-        }).then(() => { return response.status(200).send({ wait: true }) });
-
-
+        })
+        .then(() => {
+          return response.status(200).send({ wait: true });
+        });
     }
   }
 };
