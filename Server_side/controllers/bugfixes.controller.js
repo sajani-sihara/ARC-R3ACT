@@ -58,15 +58,10 @@ exports.bugFixes = async function (request, response) {
 
     // Store all the reviews to a variable
     var reviewsArray = detailsArray.reviewsArray;
-<<<<<<< HEAD
-    //if the review is a bug fix then store in an array
-    reviewsArray.forEach(review => {
-=======
 
     // Iterating through reviewsArray
     reviewsArray.forEach((review) => {
       // Checking if the review belongs to bug fix cluster
->>>>>>> e619476119bbdd5dcc4b801ab365512aeea5d338
       if (review.cluster == "BugFixes") {
         detailsResult.push({
           _id: review._id,
@@ -101,18 +96,11 @@ exports.relatedReviews = async function (request, response) {
     var reviewsArray = detailsArray.reviewsArray;
     // Store all the keywords and review ids related to bug fixes
     var bugFixes = detailsArray.BugFixes;
-<<<<<<< HEAD
-    //find the keyword in the BugFixes array
-    var bugFix = bugFixes.find((bug) => bug.keyword === request.params.keyword);
-     // if the keyword is present then iterate through the reviewIDs
-    // array to retrieve reviews that have the same id and store in an array
-=======
 
     // Find and store the keyword from the array to a variable
     var bugFix = bugFixes.find((bug) => bug.keyword === request.params.keyword);
 
     // Checking if the variable is not null
->>>>>>> e619476119bbdd5dcc4b801ab365512aeea5d338
     if (bugFix && bugFix.reviewIDs.length) {
       var reviewIDs = bugFix.reviewIDs;
       // Iterating through reviewsID array

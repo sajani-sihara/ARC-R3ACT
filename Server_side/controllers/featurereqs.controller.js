@@ -33,11 +33,7 @@ exports.retrieveKeywords = async function (request, response) {
       }
     }
 
-<<<<<<< HEAD
-    // Sorting the array in ascending order of the sentiment score
-=======
     // Sorting the array in descending order of the sentiment score
->>>>>>> e619476119bbdd5dcc4b801ab365512aeea5d338
     var keywords = sortDescArray(detailsArray);
     return response.send({
       sent: true,
@@ -50,13 +46,8 @@ exports.retrieveKeywords = async function (request, response) {
 };
 
 /**
-<<<<<<< HEAD
- * Retrieves and displays and displays all the 
- * feature requests.
-=======
  * Retrieves and displays all the reviews related
  * to feature requests from the database.
->>>>>>> e619476119bbdd5dcc4b801ab365512aeea5d338
  */
 exports.featureRequests = async function (request, response) {
   try {
@@ -67,15 +58,10 @@ exports.featureRequests = async function (request, response) {
 
     // Store all the reviews to a variable
     var reviewsArray = detailsArray.reviewsArray;
-<<<<<<< HEAD
-    //if the review is a feature request then store in an array
-    reviewsArray.forEach(review => {
-=======
 
     // Iterating through reviewsArray
     reviewsArray.forEach((review) => {
       // Checking if the review belongs to feature request cluster
->>>>>>> e619476119bbdd5dcc4b801ab365512aeea5d338
       if (review.cluster == "FeatureRequests") {
         detailsResult.push({
           _id: review._id,
@@ -110,12 +96,6 @@ exports.relatedReviews = async function (request, response) {
     var reviewsArray = detailsArray.reviewsArray;
     // Store all the keywords and review ids related to feature requests
     var featreqArray = detailsArray.FeatureRequests;
-<<<<<<< HEAD
-    //find the keyword in the FeatureRequests array
-    var featreq = featreqArray.find((fr) => fr.keyword === request.params.keyword);
-    // if the keyword is present then iterate through the reviewIDs
-    // array to retrieve reviews that have the same id and store in an array
-=======
 
     // Find and store the keyword from the array to a variable
     var featreq = featreqArray.find(
@@ -123,7 +103,6 @@ exports.relatedReviews = async function (request, response) {
     );
 
     // Checking if the variable is not null
->>>>>>> e619476119bbdd5dcc4b801ab365512aeea5d338
     if (featreq && featreq.reviewIDs.length) {
       var reviewIDs = featreq.reviewIDs;
       // Iterating through reviewsID array

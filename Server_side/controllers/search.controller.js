@@ -40,7 +40,7 @@ exports.searchApp = async function (request, response) {
           }
           var rating = result[i].scoreText;
           var price = result[i].priceText;
-          title = title.split(/[():-]+/).join(",").split(" \u2014");
+          title = title.split("from").join().split("for").join().split(/[():-]+/).join().split(" \u2014").join().split(",");
           var newTitle = title[0].trim();
           appArray.push({
             newTitle,

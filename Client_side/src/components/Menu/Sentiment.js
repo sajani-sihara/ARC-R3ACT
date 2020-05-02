@@ -1,10 +1,10 @@
 /* 
-  Page      - Contact.js page
-  Function  - Provides contact information regarding ARC 
-  Author    - Sajani Sihara
+  Page      - MenuBox.js page
+  Function  - Displays the menu (Bug Fixes, Feature Requests and Overall Sentiment)
+  Author    - Sajani Sihara, Ridmi Amasha
 */
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import LoadingBox from "../Error/LoadingBox";
 import ErrorPage from "../Error/Crashed";
@@ -20,89 +20,162 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Helmet } from "react-helmet";
+class Sentiment extends React.Component {
 
-const TITLE = "Sentiment | ARC";
+  //Interval to be triggered
+  fetchInterval = false;
+  //Store the API call
+  urlString = "";
+  sentiURLString = "";
+  TITLE = "Sentiment | ARC";
+  constructor(props) {
+    super(props);
+    const location = this.props.location;
 
-//Function Contact
-function Sentiment(props) {
-  //props and state for loading
-  const [isLoaded, setIsLoaded] = useState(false);
-  //props and state for error checking
-  const [error, setError] = useState(null);
-  //props and state for retrieve data from api
-  const [items, setItems] = useState([]);
+    const { appId } = location.state;
+    localStorage.setItem("appName", appId)
+    this.state = {
+      error: {},
+      isLoaded: false,
+      details: { wait: true },
+      items: { sent: true },
+      app: appId
+    };
+    //const {appId} = this.props.match.params.appId;
+    this.urlString = "http://localhost:5000/app/" + appId;
+    this.sentiURLString = "http://localhost:5000/sentiment/" + appId;
+    console.log("this.urlString", this.urlString);
 
-  const linkState = props.location.state;
-  const app = linkState.app;
+    const { details } = this.state;
 
-  //fetches the sentiment api for given app id
-  useEffect(() => {
-    fetch("http://localhost:5000/sentiment/" + app, { method: "POST" })
+    if (details && details.wait) {
+      console.log("wrong items");
+
+      // checks if the data is fetched between 20 mins
+      if (!this.fetchInterval) {
+
+        console.log("no fetch interval");
+        this.getAppDetails(this.urlString)
+        console.log("get app details");
+
+        this.fetchInterval = setInterval(() => {
+          this.getAppDetails(this.urlString)
+        }, 120000);
+
+      }
+    } else {
+      clearInterval(this.fetchInterval);
+    }
+  }
+
+  getAppDetails(urlString) {
+    fetch(urlString, {
+      method: "POST"
+    })
       .then((res) => res.json())
       .then(
         (result) => {
-          setIsLoaded(true);
-          setItems(result);
+          this.handleDetailsSuccess(result);
         },
         (error) => {
-          setIsLoaded(true);
-          setError(error);
+          this.setState({ error });
         }
       );
-  }, [app]);
-  if (error) {
-    return <ErrorPage errorDet={error.message} />;
-  } else if (!isLoaded) {
-    return <LoadingBox />;
-  } else {
-    return (
-      <div className="container-fluid" style={{ padding: 0 }}>
-        <Helmet>
-          <title>{TITLE}</title>
-          <link rel="icon" href="images/logo1.png" sizes="16x16"></link>
-        </Helmet>
-        {/*Adding the background image*/}
-        <div className="bgimg-16">
-          {/*Adding the main heading */}
-          <div className="caption">
-            <span className="border">OVERLOOK OF THE MOBILE APP</span>
+  }
+
+  //Checks if the results have been fetched
+  handleDetailsSuccess(result) {
+    console.log("result", result);
+    this.setState({ details: result });
+    if (!result.wait) {
+      clearInterval(this.fetchInterval);
+      this.getItems(this.sentiURLString);
+      //   this.setState({ isLoaded: true });
+    }
+  }
+  getItems(urlString) {
+    fetch(urlString, {
+      method: "POST"
+    })
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          this.handleItemsSuccess(result);
+        },
+        (error) => {
+          this.setState({ error });
+        }
+      );
+  }
+  //Checks if the results have been fetched
+  handleItemsSuccess(result) {
+    console.log("item", result);
+    this.setState({ items: result });
+    if (result.sent) {
+      this.setState({ isLoaded: true });
+    }
+  }
+
+
+  render() {
+    const { isLoaded, error, items, details, app } = this.state;
+    if ((error && error.message)) {
+      console.log("error", error);
+      return <ErrorPage errorDet={error.message} />;
+    } else if (details.message == "Sorry! The number of reviews is less than 100.") {
+      return <ErrorPage errorDet={details.message} />;
+    } else if (!isLoaded) {
+      return <LoadingBox />;
+    } else {
+      return (
+        <div className="container-fluid" style={{ padding: 0 }}>
+          <Helmet>
+            <title>{this.TITLE}</title>
+            <link rel="icon" href="images/logo1.png" sizes="16x16"></link>
+          </Helmet>
+          {/*Adding the background image*/}
+          <div className="bgimg-16">
+            {/*Adding the main heading */}
+            <div className="caption">
+              <span className="border">OVERLOOK OF THE MOBILE APP</span>
+            </div>
           </div>
+          {items.details.map((item) => (
+            <div className="container" key={item.title}>
+              <div className="row">
+                <div className="col-lg-6 col-sm-12 p-4">
+                  <BackgroundDiv data={item} key={item.title} />
+                </div>
+
+                <div className="col-lg-6 col-sm-12 p-4">
+                  <StatisticsDiv data={item} key={item.title} />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-lg-6 col-sm-12 p-4 ">
+                  <RatingDiv data={item} key={item.title} />
+                </div>
+
+                <div className="col-lg-6 col-sm-12 p-4">
+                  <ReviewsDiv data={app} />
+                </div>
+              </div>
+            </div>
+          ))}
+          {/*Back button */}
+          <button
+            type="button"
+            className="btn btn-light"
+            id="backBtn"
+            onClick={() => this.props.history.goBack()}
+          >
+            <FontAwesomeIcon icon={faArrowLeft} style={{ width: "2vw" }} />
+          </button>
+          {/*adding the footer component */}
+          <Footer />
         </div>
-        {items.map((item) => (
-          <div className="container" key={item.title}>
-            <div className="row">
-              <div className="col-lg-6 col-sm-12 p-4">
-                <BackgroundDiv data={item} key={item.title} />
-              </div>
-
-              <div className="col-lg-6 col-sm-12 p-4">
-                <StatisticsDiv data={item} key={item.title} />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-lg-6 col-sm-12 p-4 ">
-                <RatingDiv data={item} key={item.title} />
-              </div>
-
-              <div className="col-lg-6 col-sm-12 p-4">
-                <ReviewsDiv data={app} />
-              </div>
-            </div>
-          </div>
-        ))}
-        {/*Back button */}
-         <button
-          type="button"
-          className="btn btn-light"
-          id="backBtn"
-          onClick={() => props.history.goBack()}
-        >
-          <FontAwesomeIcon icon={faArrowLeft} style={{ width: "2vw" }} />
-        </button>
-        {/*adding the footer component */}
-        <Footer />
-      </div>
-    );
+      );
+    }
   }
 }
 function BackgroundDiv(props) {
@@ -118,7 +191,7 @@ function BackgroundDiv(props) {
           }}
         >
           background
-        </h3>
+          </h3>
         <div className="row">
           <div className="col">
             <img
@@ -152,7 +225,7 @@ function StatisticsDiv(props) {
           }}
         >
           statistics
-        </h3>
+          </h3>
 
         <div className="row">
           <div className="col p-2">
@@ -161,8 +234,8 @@ function StatisticsDiv(props) {
               className="faicon"
               icon={faCalendarDay}
             />{" "}
-            Release Date
-          </div>
+              Release Date
+            </div>
           <div className="col p-2">{data.releasedDate}</div>
         </div>
         <div className="row">
@@ -172,8 +245,8 @@ function StatisticsDiv(props) {
               style={{ color: "#003396" }}
               icon={faArrowCircleDown}
             />{" "}
-            Downloads
-          </div>
+              Downloads
+            </div>
           <div className="col  p-2">{data.installs}</div>
         </div>
         <div className="row">
@@ -183,8 +256,8 @@ function StatisticsDiv(props) {
               className="faicon"
               icon={faComments}
             />{" "}
-            Reviews
-          </div>
+              Reviews
+            </div>
           <div className="col p-2">{data.reviews}</div>
         </div>
         <div className="row">
@@ -194,8 +267,8 @@ function StatisticsDiv(props) {
               className="faicon"
               icon={faTags}
             />{" "}
-            Price
-          </div>
+              Price
+            </div>
           <div className="col p-2">{data.priceText}</div>
         </div>
       </div>
@@ -215,22 +288,20 @@ function RatingDiv(props) {
           }}
         >
           ratings
-        </h3>
+          </h3>
         <div className="row heading">
-          <div className="col">App Rating</div>
+          <div className="col">App Sentiment</div>
           <div className="col" style={{ marginLeft: "14vw" }}>
             {[...Array(5).keys()].map((i) => (
               <FontAwesomeIcon
                 key={i + 1}
-                className={((i < data.scoreText)? "checked" : "")}
+                className={((i < data.sentiment) ? "checked" : "")}
                 icon={faStar}
               />
             ))}
           </div>
         </div>
-        <p style={{ textAlign: "left" }}>
-          {data.sentiment} average based on {data.reviews} reviews.
-        </p>
+
       </div>
       <hr style={{ border: "3px solid #f1f1f1" }} />
 
@@ -249,7 +320,7 @@ function RatingDiv(props) {
               ></div>
             </div>
           </div>
-          <div className="col-3">{data.fiveStars}</div>
+          <div className="col-3">{data.fiveStars}%</div>
         </div>
         <div className="row m-2">
           <div className="col-2">4 Star</div>
@@ -265,7 +336,7 @@ function RatingDiv(props) {
               ></div>
             </div>
           </div>
-          <div className="col-3">{data.fourStars}</div>
+          <div className="col-3">{data.fourStars}%</div>
         </div>
         <div className="row m-2">
           <div className="col-2"> 3 Star</div>
@@ -281,7 +352,7 @@ function RatingDiv(props) {
               ></div>
             </div>
           </div>
-          <div className="col-3">{data.threeStars}</div>
+          <div className="col-3">{data.threeStars}%</div>
         </div>
         <div className="row m-2">
           <div className="col-2">2 Star</div>
@@ -297,7 +368,7 @@ function RatingDiv(props) {
               ></div>
             </div>
           </div>
-          <div className="col-3">{data.twoStars}</div>
+          <div className="col-3">{data.twoStars}%</div>
         </div>
         <div className="row m-2">
           <div className="col-2">1 Star</div>
@@ -313,7 +384,7 @@ function RatingDiv(props) {
               ></div>
             </div>
           </div>
-          <div className="col-3">{data.oneStar}</div>
+          <div className="col-3">{data.oneStar}%</div>
         </div>
       </div>
     </div>
@@ -333,7 +404,7 @@ function ReviewsDiv(props) {
               }}
             >
               reviews
-            </h3>
+              </h3>
           </div>
         </div>
         <div className="row">
@@ -342,7 +413,7 @@ function ReviewsDiv(props) {
               User reviews regarding this application are categorised into two
               sections - bug fixes and feature requests. You can view the
               related reviews using the options below.
-            </p>
+              </p>
           </div>
         </div>
         <div className="row">
@@ -360,7 +431,7 @@ function ReviewsDiv(props) {
                 }}
               >
                 Bug Fixes
-              </button>
+                </button>
             </Link>
           </div>
           <div className="col-lg-6 col-sm-12 p-3">
@@ -377,7 +448,7 @@ function ReviewsDiv(props) {
                 }}
               >
                 Feature Requests
-              </button>
+                </button>
             </Link>
           </div>
         </div>
@@ -385,4 +456,5 @@ function ReviewsDiv(props) {
     </div>
   );
 }
+
 export default Sentiment;
