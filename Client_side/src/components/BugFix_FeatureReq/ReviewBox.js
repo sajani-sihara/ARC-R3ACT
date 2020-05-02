@@ -96,7 +96,7 @@ function MyVerticallyCenteredModal(props) {
           </div>
 
           <p style={{ fontSize: "1.3rem" }}>App version - {items && items.version ? items.version : "Unknown"} </p>
-          <p style={{ fontSize: "1.3rem" }}>
+          <p style={{ fontSize: "1.3rem", textAlign:"justify" }}>
             {items.text}
           </p>
         </Modal.Body>
