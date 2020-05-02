@@ -8,7 +8,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowCircleDown, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faArrowCircleDown, faStar,faLaptopCode } from "@fortawesome/free-solid-svg-icons";
 
 function SearchBox(props) {
   return (
@@ -38,7 +38,8 @@ function SearchBox(props) {
             <h3>{props.title}</h3>{" "}
           </div>
           <div className="row m-2">
-            <p style={{ fontSize: "1.2rem" }}>{props.developer}</p>
+      
+            <p style={{ fontSize: "1.2rem" }}>Developer : {props.developer}</p>
           </div>
           <div
             className="row m-2"

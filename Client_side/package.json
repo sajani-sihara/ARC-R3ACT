@@ -15,15 +15,14 @@
     "moment-timezone": "^0.5.28",
     "query-string": "^6.12.1",
     "react": "^16.12.0",
-    "react-autocomplete": "^1.8.1",
     "react-bootstrap": "^1.0.0-beta.17",
     "react-burger-menu": "^2.6.13",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.0.0",
     "react-moment": "^0.9.7",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.4.0",
-    "react-spinners": "^0.8.1"
+    "react-scripts": "^3.4.0"
+    
   },
   "scripts": {
     "start": "react-scripts start",

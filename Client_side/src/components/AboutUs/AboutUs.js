@@ -34,8 +34,8 @@ function AboutUs() {
           style={{
             textAlign: "center",
             fontWeight: 700,
-            paddingLeft: "23.3vw",
-            paddingRight: "23.3vw",
+            paddingLeft: "16.6vw",
+            paddingRight: "16.6vw",
             paddingTop: "6.6vw",
             paddingBottom: "3.3vw",
             letterSpacing: "0.2vw",

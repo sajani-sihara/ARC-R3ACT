@@ -52,13 +52,7 @@ function SearchPage(props) {
           className="col mx-lg-5 mx-md-0 mx-sm-0 border-bottom border-secondary"
             key={item.appId}
           >
-            <Link
-                  to={{
-                    pathname: "/sentiment/" + item.appId,
-                    state: { appId: item.appId },
-                  }}
-                  style={{ textDecoration: "none" }}
-                >
+            
             <SearchBox
               id={item.appId}
               title={item.newTitle}
@@ -68,7 +62,7 @@ function SearchPage(props) {
               installs={item.installs}
               rating={item.rating}
               price={item.price}
-            /></Link>
+            />
           </div>
         ))}
       </div>

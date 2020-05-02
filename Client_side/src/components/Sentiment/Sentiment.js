@@ -206,8 +206,8 @@ function BackgroundDiv(props) {
             />
           </div>
           <div className="col-lg-8">
-            <p>{data.title}</p>
-            <p>{data.developer}</p>
+            <p style={{textTransform:'uppercase'}}>{data.title}</p>
+            <p>Developer : {data.developer}</p>
             <p style={{ fontStyle: "italic", width: "90%", textAlign: "justify" }}>"{data.summary}"</p>
           </div>
         </div>
@@ -230,7 +230,7 @@ function StatisticsDiv(props) {
           statistics
           </h3>
 
-        <div className="row">
+        <div className="row ml-2">
           <div className="col p-2">
             <FontAwesomeIcon
               style={{ color: "#5494da" }}
@@ -241,7 +241,7 @@ function StatisticsDiv(props) {
             </div>
           <div className="col p-2">{data.releasedDate}</div>
         </div>
-        <div className="row">
+        <div className="row ml-2">
           <div className="col  p-2">
             <FontAwesomeIcon
               className="faicon"
@@ -252,7 +252,7 @@ function StatisticsDiv(props) {
             </div>
           <div className="col  p-2">{data.installs}</div>
         </div>
-        <div className="row">
+        <div className="row ml-2">
           <div className="col p-2">
             <FontAwesomeIcon
               style={{ color: "#1750ac" }}
@@ -263,7 +263,7 @@ function StatisticsDiv(props) {
             </div>
           <div className="col p-2">{data.reviews}</div>
         </div>
-        <div className="row">
+        <div className="row ml-2">
           <div className="col p-2">
             <FontAwesomeIcon
               style={{ color: "#3373c4" }}
@@ -412,7 +412,7 @@ function ReviewsDiv(props) {
         </div>
         <div className="row">
           <div className="col">
-            <p>
+            <p style={{textAlign:'justify'}}>
               User reviews regarding this application are categorised into two
               sections - bug fixes and feature requests. You can view the
               related reviews using the options below.
