@@ -13,9 +13,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowCircleDown,
   faTags,
-  faDownload,
+  faCalendarDay,
   faComments,
   faStar,
+  faArrowLeft
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Helmet } from "react-helmet";
@@ -89,6 +90,15 @@ function Sentiment(props) {
             </div>
           </div>
         ))}
+        {/*Back button */}
+         <button
+          type="button"
+          className="btn btn-light"
+          id="backBtn"
+          onClick={() => props.history.goBack()}
+        >
+          <FontAwesomeIcon icon={faArrowLeft} style={{ width: "2vw" }} />
+        </button>
         {/*adding the footer component */}
         <Footer />
       </div>
@@ -145,6 +155,17 @@ function StatisticsDiv(props) {
         </h3>
 
         <div className="row">
+          <div className="col p-2">
+            <FontAwesomeIcon
+              style={{ color: "#5494da" }}
+              className="faicon"
+              icon={faCalendarDay}
+            />{" "}
+            Release Date
+          </div>
+          <div className="col p-2">{data.releasedDate}</div>
+        </div>
+        <div className="row">
           <div className="col  p-2">
             <FontAwesomeIcon
               className="faicon"
@@ -177,17 +198,6 @@ function StatisticsDiv(props) {
           </div>
           <div className="col p-2">{data.priceText}</div>
         </div>
-        <div className="row">
-          <div className="col p-2">
-            <FontAwesomeIcon
-              style={{ color: "#5494da" }}
-              className="faicon"
-              icon={faDownload}
-            />{" "}
-            Size
-          </div>
-          <div className="col p-2">{data.size} MB</div>
-        </div>
       </div>
     </div>
   );
@@ -209,10 +219,10 @@ function RatingDiv(props) {
         <div className="row heading">
           <div className="col">App Rating</div>
           <div className="col" style={{ marginLeft: "14vw" }}>
-            {[...Array(Number(5))].map((i) => (
+            {[...Array(5).keys()].map((i) => (
               <FontAwesomeIcon
                 key={i + 1}
-                className={data.sentiment >= i ? "checked" : ""}
+                className={((i < data.scoreText)? "checked" : "")}
                 icon={faStar}
               />
             ))}
@@ -225,10 +235,10 @@ function RatingDiv(props) {
       <hr style={{ border: "3px solid #f1f1f1" }} />
 
       <div className="container">
-        <div className="row">
-          <div className="col">5 Star</div>
-          <div className="col">
-            <div className="progress">
+        <div className="row m-2">
+          <div className="col-2">5 Star</div>
+          <div className="col-7">
+            <div className="progress h-100">
               <div
                 className="progress-bar progress-bar-striped"
                 role="progressbar"
@@ -239,12 +249,12 @@ function RatingDiv(props) {
               ></div>
             </div>
           </div>
-          <div className="col">{data.fiveStars}</div>
+          <div className="col-3">{data.fiveStars}</div>
         </div>
-        <div className="row">
-          <div className="col">4 Star</div>
-          <div className="col">
-            <div className="progress">
+        <div className="row m-2">
+          <div className="col-2">4 Star</div>
+          <div className="col-7">
+            <div className="progress h-100">
               <div
                 className="progress-bar progress-bar-striped"
                 role="progressbar"
@@ -255,12 +265,12 @@ function RatingDiv(props) {
               ></div>
             </div>
           </div>
-          <div className="col">{data.fourStars}</div>
+          <div className="col-3">{data.fourStars}</div>
         </div>
-        <div className="row">
-          <div className="col"> 3 Star</div>
-          <div className="col">
-            <div className="progress">
+        <div className="row m-2">
+          <div className="col-2"> 3 Star</div>
+          <div className="col-7">
+            <div className="progress h-100">
               <div
                 className="progress-bar progress-bar-striped"
                 role="progressbar"
@@ -271,12 +281,12 @@ function RatingDiv(props) {
               ></div>
             </div>
           </div>
-          <div className="col">{data.threeStars}</div>
+          <div className="col-3">{data.threeStars}</div>
         </div>
-        <div className="row">
-          <div className="col">2 Star</div>
-          <div className="col">
-            <div className="progress">
+        <div className="row m-2">
+          <div className="col-2">2 Star</div>
+          <div className="col-7">
+            <div className="progress h-100">
               <div
                 className="progress-bar progress-bar-striped"
                 role="progressbar"
@@ -287,12 +297,12 @@ function RatingDiv(props) {
               ></div>
             </div>
           </div>
-          <div className="col">{data.twoStars}</div>
+          <div className="col-3">{data.twoStars}</div>
         </div>
-        <div className="row">
-          <div className="col">1 Star</div>
-          <div className="col">
-            <div className="progress">
+        <div className="row m-2">
+          <div className="col-2">1 Star</div>
+          <div className="col-7">
+            <div className="progress h-100">
               <div
                 className="progress-bar progress-bar-striped"
                 role="progressbar"
@@ -303,7 +313,7 @@ function RatingDiv(props) {
               ></div>
             </div>
           </div>
-          <div className="col">{data.oneStar}</div>
+          <div className="col-3">{data.oneStar}</div>
         </div>
       </div>
     </div>

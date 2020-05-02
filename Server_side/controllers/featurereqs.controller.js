@@ -20,7 +20,7 @@ exports.retrieveKeywords = async function (request, response) {
       appId: request.params.appId,
     });
 
-    // Store all the keywords and review ids related to bug fixes
+    // Store all the keywords and review ids related to feature requests
     var featreqArray = detailsResult.FeatureRequests;
     for (var i in featreqArray) {
       var keyword = featreqArray[i].keyword;
@@ -33,29 +33,49 @@ exports.retrieveKeywords = async function (request, response) {
       }
     }
 
-    // Sorting the array in ascending order of the sentiment score
-    // detailsArray.sort(sortSentimentScore);
+    // Sorting the array in descending order of the sentiment score
     var keywords = sortDescArray(detailsArray);
-    return response.send({ "sent": true, "keywords": keywords, "appName": detailsResult.title });
+    return response.send({
+      sent: true,
+      keywords: keywords,
+      appName: detailsResult.title,
+    });
   } catch (error) {
     return response.status(500).send(error);
   }
 };
 
-
+/**
+ * Retrieves and displays all the reviews related
+ * to feature requests from the database.
+ */
 exports.featureRequests = async function (request, response) {
   try {
     var detailsResult = [];
     var detailsArray = await bugfixesService.getDetails({
       appId: request.params.appId,
     });
+
+    // Store all the reviews to a variable
     var reviewsArray = detailsArray.reviewsArray;
-    reviewsArray.forEach(review => {
+
+    // Iterating through reviewsArray
+    reviewsArray.forEach((review) => {
+      // Checking if the review belongs to feature request cluster
       if (review.cluster == "FeatureRequests") {
-        detailsResult.push({ "_id": review._id,"text":review.text, "partialReview": review.partialReview, "userName": review.userName, "date": review.date, "rating": review.rating,"version":review.version });
+        detailsResult.push({
+          _id: review._id,
+          text: review.text,
+          partialReview: review.partialReview,
+          userName: review.userName,
+          date: review.date,
+          rating: review.rating,
+          version: review.version,
+        });
       }
     });
-    return response.send({ "sent": true, "reviewsArray": detailsResult });
+
+    return response.send({ sent: true, reviewsArray: detailsResult });
   } catch (error) {
     return response.status(500).send(error);
   }
@@ -71,27 +91,45 @@ exports.relatedReviews = async function (request, response) {
     var detailsArray = await bugfixesService.getDetails({
       appId: request.params.appId,
     });
+
+    // Store all the reviews to a variable
     var reviewsArray = detailsArray.reviewsArray;
+    // Store all the keywords and review ids related to feature requests
     var featreqArray = detailsArray.FeatureRequests;
-    var featreq = featreqArray.find((fr) => fr.keyword === request.params.keyword);
+
+    // Find and store the keyword from the array to a variable
+    var featreq = featreqArray.find(
+      (fr) => fr.keyword === request.params.keyword
+    );
+
+    // Checking if the variable is not null
     if (featreq && featreq.reviewIDs.length) {
       var reviewIDs = featreq.reviewIDs;
-      reviewIDs.forEach(reviewID => {
+      // Iterating through reviewsID array
+      reviewIDs.forEach((reviewID) => {
         var review = reviewsArray.find((rev) => reviewID === rev._id);
-        detailsResult.push({ "_id": review._id,"text":review.text, "partialReview": review.partialReview, "userName": review.userName, "date": review.date, "rating": review.rating,"version":review.version });
+        detailsResult.push({
+          _id: review._id,
+          text: review.text,
+          partialReview: review.partialReview,
+          userName: review.userName,
+          date: review.date,
+          rating: review.rating,
+          version: review.version,
+        });
       });
     }
-    return response.send({ "sent": true, "reviewsArray": detailsResult });
+
+    return response.send({ sent: true, reviewsArray: detailsResult });
   } catch (error) {
     return response.status(500).send(error);
   }
 };
 
-
 /**
  * Sorts the 2D array in descending order of the second element.
  *
- * @param {array} array An unsorted array
+ * @param {array} array An unsorted array.
  * @returns {array} The array sorted in descending order.
  */
 function sortDescArray(array) {
