@@ -121,6 +121,7 @@ exports.getSentiment = async function (request, response) {
       developer,
       genre,
       icon,
+      releasedDate,
       sentiment,
       postive,
       neutral,
