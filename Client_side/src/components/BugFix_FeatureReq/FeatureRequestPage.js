@@ -114,7 +114,7 @@ class FeatureRequestPage extends React.Component {
 
 
   render() {
-    const { isLoaded, error, items, keyword, keywords, appId } = this.state;
+    const { isLoaded, error, items, keyword, keywords} = this.state;
     let pageTitle;
 
     if (!keyword) {

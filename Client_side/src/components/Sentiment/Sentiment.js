@@ -120,7 +120,7 @@ function BackgroundDiv(props) {
           background
         </h3>
         <div className="row">
-          <div className="col">
+          <div className="col-lg-4">
             <img
               className="img-responsive m-2 ml-5  searchAppsImages"
               width="100px"
@@ -129,10 +129,10 @@ function BackgroundDiv(props) {
               src={data.icon}
             />
           </div>
-          <div className="col">
+          <div className="col-lg-8">
             <p>{data.title}</p>
             <p>{data.developer}</p>
-            <p style={{ fontStyle: "italic", width: "90%" }}>{data.summary}</p>
+            <p style={{ fontStyle: "italic", width: "90%" ,textAlign:"justify"}}>"{data.summary}"</p>
           </div>
         </div>
       </div>

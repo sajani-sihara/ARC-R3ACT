@@ -12,7 +12,7 @@ import SearchBox from "./SearchBox";
 import "../../App.css";
 import Footer from "../NavigationBar/Footer";
 import { Helmet } from "react-helmet";
-import { Link,useLocation } from "react-router-dom";
+import { Link} from "react-router-dom";
 const TITLE = "Search Apps | ARC";
 
 function SearchPage(props) {
