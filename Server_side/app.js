@@ -11,7 +11,7 @@
  * Execute 'npm install' before 'npm start'.
  */
 
-var path = require('path');
+var path = require("path");
 
 var createError = require("http-errors");
 var express = require("express");
@@ -30,9 +30,9 @@ var contactUsRouter = require("./routes/contactus.route");
 
 var app = express();
 
-app.use(express.static(path.join(__dirname, 'build')));
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+app.use(express.static(path.join(__dirname, "build")));
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 app.set("views", path.join(__dirname, "views"));
@@ -54,9 +54,8 @@ app.use("/featurereqs", featureRequestsRouter);
 app.use("/sentiment", sentimentRouter);
 app.use("/contactus", contactUsRouter);
 
-
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {F
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
