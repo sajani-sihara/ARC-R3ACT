@@ -371,38 +371,26 @@ html {
 
 /* This is first background image of the About.js page*/
 .bgimg-1 {
-  min-height: 46.6vw;
-  opacity: 0.9;
+  min-height: 30vw;
   background-image: url("/images/img_parallax4.jpg");
 }
 
 /* This is second background image of the About.js page*/
 .bgimg-2 {
-  min-height: 46.6vw;
-  opacity: 09;
+  min-height: 30vw;
   background-image: url("/images/img_parallax.jpg");
 }
 
 /* This is third background image of the About.js page*/
 .bgimg-3 {
-  min-height: 46.6vw;
-  opacity: 0.9;
+  min-height: 30vw;
   background-image: url("/images/img_parallax2.jpg");
 }
 
 /* This is fourth background image of the About.js page*/
 .bgimg-4 {
-  min-height: 46.6vw;
-  opacity: 0.9;
+  min-height: 30vw;
   background-image: url("/images/img_parallax3.jpg");
-}
-.bgimg-5 {
-  min-height: 53.3vw;
-  background-image: url("/images/reviews.jpg");
-}
-.bgimg-6 {
-  min-height: 53.3vw;
-  background-image: url("/images/overall.jpg");
 }
 
 /* This is first background image of the About Us page*/
@@ -413,7 +401,7 @@ html {
 
 /* This is the second background image of the About Us page*/
 .bgimg-8 {
-  min-height: 46.6vw;
+  min-height: 30vw;
   background-image: url("/images/laptop5.jpg");
 }
 
@@ -422,6 +410,8 @@ html {
   min-height: 20vw;
   background-image: url("/images/phone.jpg");
 }
+
+/* This is the first background image of the Support page*/
 .bgimg-10 {
   min-height: 30vw;
   background-image: url("/images/support1.jpeg");

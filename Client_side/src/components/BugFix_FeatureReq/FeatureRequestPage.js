@@ -14,6 +14,9 @@ import ReviewBox from "./ReviewBox";
 import "../../App.css";
 import { Helmet } from "react-helmet";
 import queryString from 'query-string'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+
 class FeatureRequestPage extends React.Component {
 
   TITLE = "Feature Requests | ARC";
@@ -164,6 +167,15 @@ class FeatureRequestPage extends React.Component {
               </div>
             </div>
           </div>
+          {/*Back button */}
+         <button
+          type="button"
+          className="btn btn-light"
+          id="backBtn"
+          onClick={() => this.props.history.goBack()}
+        >
+          <FontAwesomeIcon icon={faArrowLeft} style={{ width: "2vw" }} />
+        </button>
           <Footer />
         </div>
       );

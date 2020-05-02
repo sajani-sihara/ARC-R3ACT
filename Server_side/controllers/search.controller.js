@@ -33,9 +33,14 @@ exports.searchApp = async function (request, response) {
           var icon = result[i].icon;
           var summary = result[i].summary;
           var installs = result[i].installs;
+          var newInstalls=installs.replace(/,/g, '')
+          newInstalls=newInstalls.split("+");
+          if(newInstalls[0]%1000000===0){
+            installs=Math.floor(newInstalls[0]/1000000)+"M+";
+          }
           var rating = result[i].scoreText;
           var price = result[i].priceText;
-          title = title.split(/[:-]+/);
+          title = title.split(/[():-]+/).join(",").split(" \u2014");
           var newTitle = title[0].trim();
           appArray.push({
             newTitle,

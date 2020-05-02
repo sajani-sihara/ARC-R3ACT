@@ -10,7 +10,7 @@ function About() {
   return (
     <div>
       {/*Adding a div that will hold the intro para */}
-      <div className="descrip-1">
+      <div className="descrip-3">
         <h3 style={{ textAlign: "center", fontSize: "2vw", fontWeight: 900 }}>
           Application Review Classifier
         </h3>
@@ -19,6 +19,7 @@ function About() {
             paddingLeft: "16.6vw",
             paddingRight: "16.6vw",
             paddingBlockStart: "2vw",
+            textAlign: "justify",
           }}
         >
           ARC analyses user reviews from the Google Play Store and suggests bug
@@ -41,7 +42,7 @@ function About() {
       </div>
 
       {/*Adding para about how to use ARC */}
-      <div className="descrip-1">
+      <div className="descrip-3">
         <h3 style={{ textAlign: "center", fontSize: "2vw", fontWeight: 900 }}>
           How to use ARC?
         </h3>
@@ -86,7 +87,7 @@ function About() {
           <div className="row">
             {/*First column holds info regarding Bug Fixes */}
             <div className="col-4 d-flex align-items-stretch">
-              <div className="card" style={{ marginLeft: "2vw" }}>
+              <div className="card" style={{ marginLeft: "2vw" , padding:"1.5vw"}}>
                 <h3 style={{ fontSize:"2vw" ,fontWeight: 700, paddingBottom: "1.3vw" }}>
                   Bug Fixes
                 </h3>
@@ -110,7 +111,7 @@ function About() {
 
             {/*Second column holds info regarding Feature Requests */}
             <div className="col-4  d-flex align-items-stretch">
-              <div className="card" style={{ marginLeft: "2vw" }}>
+              <div className="card" style={{ marginLeft: "2vw" , padding:"1.5vw"}}>
                 <h3 style={{ fontSize:"2vw" ,fontWeight: 700, paddingBottom: "1.3vw" }}>
                   Feature Requests
                 </h3>
@@ -134,7 +135,7 @@ function About() {
 
             {/*Third column holds info regarding Overall Sentiment */}
             <div className="col-4 d-flex align-items-stretch">
-              <div className="card" style={{ marginLeft: "2vw" }}>
+              <div className="card" style={{ marginLeft: "2vw", padding:"1.5vw" }}>
                 <h3 style={{fontSize:"2vw" , fontWeight: 700, paddingBottom: "1.3vw" }}>
                   Overall Sentiment
                 </h3>
@@ -188,6 +189,7 @@ function About() {
               paddingLeft: "16.6vw",
               paddingRight: "16.6vw",
               paddingBlockStart: "2vw",
+              textAlign: "justify"
             }}
           >
             ARC provides fully automated, easy-to-understand sentiment analysis

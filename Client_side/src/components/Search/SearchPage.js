@@ -20,18 +20,10 @@ function SearchPage(props) {
   const [error, setError] = useState(null);
   const [items, setItems] = useState([]);
 
-  //Current url object in the browser stored into location variable
-  let location = useLocation();
-  //Gets the current url path name
-  const currentURL = location.pathname;
-
-  console.log("currentURL: ", currentURL);
-  
-
-  const app = props.match.params.app;
+  const appId = props.match.params.appId;
 
   //URL for calling the api for searching in the server,application id needs to be appended
-  const url = "http://localhost:5000/search/"+app;
+  const url = "http://localhost:5000/search/"+appId;
 
   //fetches the api call from the server
   useEffect(() => {
@@ -51,14 +43,13 @@ function SearchPage(props) {
       );
   }, [url]);
   const Items = () => {
-    console.log(items);
     const rows = [...Array(Math.ceil(items.length / 2))];
     const itemRows = rows.map((row, i) => items.slice(i * 2, i * 2 + 2));
     const content = itemRows.map((row, i) => (
       <div className="row px-5 pb-4" key={i}>
         {row.map((item) => (
           <div
-            className="col-lg-6 mx-5 mx-sm-0 border-bottom border-secondary"
+          className="col mx-lg-5 mx-md-0 mx-sm-0 border-bottom border-secondary"
             key={item.appId}
           >
             <Link
@@ -69,6 +60,7 @@ function SearchPage(props) {
                   style={{ textDecoration: "none" }}
                 >
             <SearchBox
+              id={item.appId}
               title={item.newTitle}
               developer={item.developer}
               summary={item.summary}

@@ -25,6 +25,7 @@ exports.getSentiment = async function (request, response) {
   var developer;
   var genre;
   var icon;
+  var releasedDate;
   var sentiment;
 
   var postive = 0;
@@ -49,6 +50,7 @@ exports.getSentiment = async function (request, response) {
     developer = resultDetails.developer;
     genre = resultDetails.genre;
     icon = resultDetails.icon;
+    releasedDate = resultDetails.releasedDate;
     sentiment = resultDetails.rating_calculated;
     reviewsArray = resultDetails.reviewsArray;
 
@@ -120,6 +122,7 @@ exports.getSentiment = async function (request, response) {
       genre,
       icon,
       reviewsArrayLen,
+      releasedDate,
       sentiment,
       postive,
       neutral,

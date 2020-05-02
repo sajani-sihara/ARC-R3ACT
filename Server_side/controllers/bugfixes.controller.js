@@ -35,27 +35,52 @@ exports.retrieveKeywords = async function (request, response) {
 
     // Sorting the array in ascending order of the sentiment score
     var keywords = sortAscArray(detailsArray);
-    return response.send({ "sent": true, "keywords": keywords, "appName": detailsResult.title });
+    return response.send({
+      sent: true,
+      keywords: keywords,
+      appName: detailsResult.title,
+    });
   } catch (error) {
     return response.status(500).send(error);
   }
 };
 
-
+/**
+ * Retrieves and displays all the reviews related
+ * to bug fixes from the database.
+ */
 exports.bugFixes = async function (request, response) {
   try {
     var detailsResult = [];
     var detailsArray = await bugfixesService.getDetails({
       appId: request.params.appId,
     });
+
+    // Store all the reviews to a variable
     var reviewsArray = detailsArray.reviewsArray;
+<<<<<<< HEAD
     //if the review is a bug fix then store in an array
     reviewsArray.forEach(review => {
+=======
+
+    // Iterating through reviewsArray
+    reviewsArray.forEach((review) => {
+      // Checking if the review belongs to bug fix cluster
+>>>>>>> e619476119bbdd5dcc4b801ab365512aeea5d338
       if (review.cluster == "BugFixes") {
-        detailsResult.push({ "_id": review._id,"text":review.text, "partialReview": review.partialReview, "userName": review.userName, "date": review.date, "rating": review.rating,"version":review.version });
+        detailsResult.push({
+          _id: review._id,
+          text: review.text,
+          partialReview: review.partialReview,
+          userName: review.userName,
+          date: review.date,
+          rating: review.rating,
+          version: review.version,
+        });
       }
     });
-    return response.send({ "sent": true, "reviewsArray": detailsResult });
+
+    return response.send({ sent: true, reviewsArray: detailsResult });
   } catch (error) {
     return response.status(500).send(error);
   }
@@ -71,30 +96,50 @@ exports.relatedReviews = async function (request, response) {
     var detailsArray = await bugfixesService.getDetails({
       appId: request.params.appId,
     });
+
+    // Store all the reviews to a variable
     var reviewsArray = detailsArray.reviewsArray;
+    // Store all the keywords and review ids related to bug fixes
     var bugFixes = detailsArray.BugFixes;
+<<<<<<< HEAD
     //find the keyword in the BugFixes array
     var bugFix = bugFixes.find((bug) => bug.keyword === request.params.keyword);
      // if the keyword is present then iterate through the reviewIDs
     // array to retrieve reviews that have the same id and store in an array
+=======
+
+    // Find and store the keyword from the array to a variable
+    var bugFix = bugFixes.find((bug) => bug.keyword === request.params.keyword);
+
+    // Checking if the variable is not null
+>>>>>>> e619476119bbdd5dcc4b801ab365512aeea5d338
     if (bugFix && bugFix.reviewIDs.length) {
       var reviewIDs = bugFix.reviewIDs;
-      reviewIDs.forEach(reviewID => {
+      // Iterating through reviewsID array
+      reviewIDs.forEach((reviewID) => {
         var review = reviewsArray.find((rev) => reviewID === rev._id);
-        detailsResult.push({ "_id": review._id,"text":review.text, "partialReview": review.partialReview, "userName": review.userName, "date": review.date, "rating": review.rating,"version":review.version });
+        detailsResult.push({
+          _id: review._id,
+          text: review.text,
+          partialReview: review.partialReview,
+          userName: review.userName,
+          date: review.date,
+          rating: review.rating,
+          version: review.version,
+        });
       });
     }
-    return response.send({ "sent": true, "reviewsArray": detailsResult });
+
+    return response.send({ sent: true, reviewsArray: detailsResult });
   } catch (error) {
     return response.status(500).send(error);
   }
 };
 
-
 /**
  * Sorts the 2D array in ascending order of the second element.
  *
- * @param {array} array An unsorted array
+ * @param {array} array An unsorted array.
  * @returns {array} The array sorted in ascending order.
  */
 function sortAscArray(array) {
