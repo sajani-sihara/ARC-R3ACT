@@ -23,7 +23,7 @@ function SearchPage(props) {
   const app = props.match.params.app;
 
   //URL for calling the api for searching in the server,application id needs to be appended
-  const url = "https://localhost:5000/search/pickme";
+  const url = "http://localhost:5000/search/pickme";
 
   //fetches the api call from the server
   useEffect(() => {
