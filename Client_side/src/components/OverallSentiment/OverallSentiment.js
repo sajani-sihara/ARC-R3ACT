@@ -103,6 +103,7 @@ function OverallSentiment(props) {
         >
           <FontAwesomeIcon icon={faArrowLeft} style={{ width: "2vw" }} />
         </button>
+        
         <Footer />
       </div>
     );

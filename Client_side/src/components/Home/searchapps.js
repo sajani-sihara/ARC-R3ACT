@@ -43,7 +43,7 @@ function SearchAppsClass() {
                   onKeyDown={handler}
                 />
                 <div className="input-group-append">
-                  <Link to={{ pathname: "/search/" + appName }}>
+                  <Link to={{ pathname: "search/" + appName }}>
                     {/*adding the search button */}
                     <button
                       id="searchBtnID"

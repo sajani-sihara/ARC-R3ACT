@@ -506,7 +506,7 @@ html {
 }
 
 /* Style the counter cards */
-.card {
+/* .card {
   box-shadow: 0 0.2vw 0.5vw 0 rgba(0, 0, 0, 0.2);
   font-family: "Lato", sans-serif;
   text-align: center;
@@ -522,7 +522,7 @@ html {
   color: #fff;
   align-items: center;
   width: 85%;
-}
+} */
 
 /* Styling for the heading text */
 .caption {
@@ -886,14 +886,14 @@ Sidebar wrapper styles
 }
 /*--------------------- End: Main Menu Page----------------------*/
 
-.p-4 {
+/* .p-4 {
   color: rgb(88, 87, 87);
   font-size: 2.5vh;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.2vw;
   text-decoration: none;
-}
+} */
 /*--------------------- Begin: Loading Page----------------------*/
 /*LoadingBox.js - ANALYSING... text container*/
 .loadingContainer {
@@ -1321,7 +1321,6 @@ Sidebar wrapper styles
 .cardSenti {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 16px;
-  text-align: center;
   color: #282e34;
   background-color: #f1f1f1;
 }
