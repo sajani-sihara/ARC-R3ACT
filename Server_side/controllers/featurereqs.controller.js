@@ -9,7 +9,7 @@ var bugfixesService = require("../services/bugfixes.service");
 
 /**
  * Retrieves and displays keywords related to feature
- * requests from the database.
+ * requests from the database and the app title.
  */
 exports.retrieveKeywords = async function (request, response) {
   var detailsArray = [];
@@ -34,7 +34,6 @@ exports.retrieveKeywords = async function (request, response) {
     }
 
     // Sorting the array in ascending order of the sentiment score
-    // detailsArray.sort(sortSentimentScore);
     var keywords = sortDescArray(detailsArray);
     return response.send({ "sent": true, "keywords": keywords, "appName": detailsResult.title });
   } catch (error) {
@@ -42,7 +41,10 @@ exports.retrieveKeywords = async function (request, response) {
   }
 };
 
-
+/**
+ * Retrieves and displays and displays all the 
+ * feature requests.
+ */
 exports.featureRequests = async function (request, response) {
   try {
     var detailsResult = [];
@@ -50,6 +52,7 @@ exports.featureRequests = async function (request, response) {
       appId: request.params.appId,
     });
     var reviewsArray = detailsArray.reviewsArray;
+    //if the review is a feature request then store in an array
     reviewsArray.forEach(review => {
       if (review.cluster == "FeatureRequests") {
         detailsResult.push({ "_id": review._id,"text":review.text, "partialReview": review.partialReview, "userName": review.userName, "date": review.date, "rating": review.rating,"version":review.version });
@@ -73,7 +76,10 @@ exports.relatedReviews = async function (request, response) {
     });
     var reviewsArray = detailsArray.reviewsArray;
     var featreqArray = detailsArray.FeatureRequests;
+    //find the keyword in the FeatureRequests array
     var featreq = featreqArray.find((fr) => fr.keyword === request.params.keyword);
+    // if the keyword is present then iterate through the reviewIDs
+    // array to retrieve reviews that have the same id and store in an array
     if (featreq && featreq.reviewIDs.length) {
       var reviewIDs = featreq.reviewIDs;
       reviewIDs.forEach(reviewID => {

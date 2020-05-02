@@ -107,7 +107,7 @@ exports.getSentiment = async function (request, response) {
     threeStars = ((threeStars / noOfReviews) * 100).toFixed(1);
     twoStars = ((twoStars / noOfReviews) * 100).toFixed(1);
     oneStar = ((oneStar / noOfReviews) * 100).toFixed(1);
-
+    var reviewsArrayLen= reviewsArray.length;
     detailsArray.push({
       // Push them into the array
       title,
@@ -119,6 +119,7 @@ exports.getSentiment = async function (request, response) {
       developer,
       genre,
       icon,
+      reviewsArrayLen,
       sentiment,
       postive,
       neutral,
@@ -130,7 +131,7 @@ exports.getSentiment = async function (request, response) {
       oneStar,
     });
 
-    return response.status(200).send(detailsArray);
+    return response.status(200).send({"sent":true,"details":detailsArray});
   } catch (error) {
     return response.status(500).send(error);
   }

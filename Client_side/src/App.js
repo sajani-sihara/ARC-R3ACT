@@ -22,7 +22,7 @@ import SearchPage from "./components/Search/SearchPage";
 import BugFixPage from "./components/BugFix_FeatureReq/BugFixPage";
 import FeatureRequestPage from "./components/BugFix_FeatureReq/FeatureRequestPage";
 import MenuPage from "./components/Menu/MenuPage";
-import Sentiment from "./components/Menu/Sentiment";
+import Sentiment1 from "./components/Menu/Sentiment_1";
 function App() {
   return (
     <Router>
@@ -32,11 +32,11 @@ function App() {
       <Route path="/aboutus" exact component={AboutUs} />
       <Route path="/support" exact component={Support} />
       <Route path="/contact" exact component={Contact} />
-      <Route path="/sentiment" exact component={Sentiment} />
+      <Route path="/sentiment/:appId" exact component={Sentiment1} />
       <Route path="/menupage" exact component={MenuPage} />
 
       <Switch>
-        <Route path="/searchpage" exact component={SearchPage} />
+        <Route path="/searchpage/" exact component={SearchPage} />
         <Route path="/" exact component={HomePage} />
         <Route path="/loading" component={LoadingBox} />
         <Route path="/bfpage/:appId" exact component={BugFixPage} />
@@ -44,7 +44,7 @@ function App() {
         <Route path="/error" exact component={ErrorCrash} />
         <Route path="/loading" exact component={LoadingBox} />
 
-        <Route path={"/search/:app"} component={Search} exact />
+        <Route path={"/search/:app"} component={SearchPage} exact />
         {/* <Route path={'/menu'} component={MenuBox}/>  */}
         <Route
           path="/search/:app"

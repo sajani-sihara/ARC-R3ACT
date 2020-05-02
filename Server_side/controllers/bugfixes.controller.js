@@ -49,6 +49,7 @@ exports.bugFixes = async function (request, response) {
       appId: request.params.appId,
     });
     var reviewsArray = detailsArray.reviewsArray;
+    //if the review is a bug fix then store in an array
     reviewsArray.forEach(review => {
       if (review.cluster == "BugFixes") {
         detailsResult.push({ "_id": review._id,"text":review.text, "partialReview": review.partialReview, "userName": review.userName, "date": review.date, "rating": review.rating,"version":review.version });
@@ -72,7 +73,10 @@ exports.relatedReviews = async function (request, response) {
     });
     var reviewsArray = detailsArray.reviewsArray;
     var bugFixes = detailsArray.BugFixes;
+    //find the keyword in the BugFixes array
     var bugFix = bugFixes.find((bug) => bug.keyword === request.params.keyword);
+     // if the keyword is present then iterate through the reviewIDs
+    // array to retrieve reviews that have the same id and store in an array
     if (bugFix && bugFix.reviewIDs.length) {
       var reviewIDs = bugFix.reviewIDs;
       reviewIDs.forEach(reviewID => {

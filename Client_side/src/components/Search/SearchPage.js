@@ -12,7 +12,7 @@ import SearchBox from "./SearchBox";
 import "../../App.css";
 import Footer from "../NavigationBar/Footer";
 import { Helmet } from "react-helmet";
-
+import { Link,useLocation } from "react-router-dom";
 const TITLE = "Search Apps | ARC";
 
 function SearchPage(props) {
@@ -20,10 +20,18 @@ function SearchPage(props) {
   const [error, setError] = useState(null);
   const [items, setItems] = useState([]);
 
+  //Current url object in the browser stored into location variable
+  let location = useLocation();
+  //Gets the current url path name
+  const currentURL = location.pathname;
+
+  console.log("currentURL: ", currentURL);
+  
+
   const app = props.match.params.app;
 
   //URL for calling the api for searching in the server,application id needs to be appended
-  const url = "http://localhost:5000/search/pickme";
+  const url = "http://localhost:5000/search/"+app;
 
   //fetches the api call from the server
   useEffect(() => {
@@ -51,8 +59,15 @@ function SearchPage(props) {
         {row.map((item) => (
           <div
             className="col-lg-6 mx-5 mx-sm-0 border-bottom border-secondary"
-            key={item}
+            key={item.appId}
           >
+            <Link
+                  to={{
+                    pathname: "/sentiment/" + item.appId,
+                    state: { appId: item.appId },
+                  }}
+                  style={{ textDecoration: "none" }}
+                >
             <SearchBox
               title={item.newTitle}
               developer={item.developer}
@@ -61,7 +76,7 @@ function SearchPage(props) {
               installs={item.installs}
               rating={item.rating}
               price={item.price}
-            />
+            /></Link>
           </div>
         ))}
       </div>

@@ -38,7 +38,7 @@ function SearchAppsClass() {
                   aria-label="search for a mobile app"
                   aria-describedby="basic-addon2"
                   value={appName}
-                  autocomplete="off"
+                  autoComplete="off"
                   onChange={e=> setName(e.target.value)}
                   onKeyDown={handler}
                 />
