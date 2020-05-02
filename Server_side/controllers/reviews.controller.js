@@ -32,6 +32,13 @@ exports.storeReviews = async function (titleParam, request, response) {
         var date = result[i].date;
         var text = result[i].text;
         var version = result[i].version;
+
+        // If the version was not selected by the review user
+        // display the version as 'Unknown'
+        if (version == null) {
+          version = "Unknown";
+        }
+
         var rating = result[i].scoreText;
         var thumbsUp = result[i].thumbsUp;
         reviewArray.push({
