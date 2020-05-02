@@ -38,151 +38,16 @@ function App() {
       <Switch>
         <Route path="/searchpage" exact component={SearchPage} />
         <Route path="/" exact component={HomePage} />
+        <Route path="/search/:appId" exact component={SearchPage}/>
         <Route path="/loading" component={LoadingBox} />
         <Route path="/bfpage/:appId" exact component={BugFixPage} />
         <Route path="/frpage/:appId" exact component={FeatureRequestPage} />
         <Route path="/error" exact component={ErrorCrash} />
         <Route path="/loading" exact component={LoadingBox} />
 
-        <Route path={"/search/:app"} component={Search} exact />
-        {/* <Route path={'/menu'} component={MenuBox}/>  */}
-        <Route
-          path="/search/:app"
-          render={({ match: { url } }) => (
-            <>
-              <Route
-                path={url + "/:appId"}
-                render={({ match: { url } }) => (
-                  <>
-                    <Route path={url + "/"} exact component={MenuBox} />
-                    <Route
-                      path={url + "/bugfix"}
-                      render={({ match: { url } }) => (
-                        <>
-                          <Route path={url + "/"} exact component={Bugfix} />
-                          <Route
-                            path={url + "/reviews"}
-                            render={({ match: { url } }) => (
-                              <>
-                                <Route
-                                  path={url + "/"}
-                                  exact
-                                  component={ViewAllReviews}
-                                />
-                                <Route
-                                  path={url + "/:reviewId"}
-                                  component={IndividualReview}
-                                />
-                              </>
-                            )}
-                          />
-                          <Route
-                            path={url + "/remainingBF"}
-                            render={({ match: { url } }) => (
-                              <>
-                                <Route
-                                  path={url + "/"}
-                                  exact
-                                  component={RemainingBF}
-                                />
-                                <Route
-                                  path={url + "/:reviewId"}
-                                  component={IndividualReview}
-                                />
-                              </>
-                            )}
-                          />
-                          <Route
-                            path={url + "/remainingFeatureRequests"}
-                            render={({ match: { url } }) => (
-                              <>
-                                <Route
-                                  path={url + "/"}
-                                  exact
-                                  component={RemainingFR}
-                                />
-                                <Route
-                                  path={url + "/:reviewId"}
-                                  component={IndividualReview}
-                                />
-                              </>
-                            )}
-                          />
-                        </>
-                      )}
-                    />
-                    <Route
-                      path={url + "/featureRequest"}
-                      render={({ match: { url } }) => (
-                        <>
-                          <Route
-                            path={url + "/"}
-                            exact
-                            component={FeatureRequest}
-                          />
-                          <Route
-                            path={url + "/reviews"}
-                            render={({ match: { url } }) => (
-                              <>
-                                <Route
-                                  path={url + "/"}
-                                  exact
-                                  component={ViewAllReviews}
-                                />
-                                <Route
-                                  path={url + "/:reviewId"}
-                                  component={IndividualReview}
-                                />
-                              </>
-                            )}
-                          />
-                          <Route
-                            path={url + "/remainingBF"}
-                            render={({ match: { url } }) => (
-                              <>
-                                <Route
-                                  path={url + "/"}
-                                  exact
-                                  component={RemainingBF}
-                                />
-                                <Route
-                                  path={url + "/:reviewId"}
-                                  component={IndividualReview}
-                                />
-                              </>
-                            )}
-                          />
-                          <Route
-                            path={url + "/remainingFeatureRequests"}
-                            render={({ match: { url } }) => (
-                              <>
-                                <Route
-                                  path={url + "/"}
-                                  exact
-                                  component={RemainingFR}
-                                />
-                                <Route
-                                  path={url + "/:reviewId"}
-                                  component={IndividualReview}
-                                />
-                              </>
-                            )}
-                          />
-                        </>
-                      )}
-                    />
-                    <Route
-                      path={url + "/overallSentiment"}
-                      component={OverallSentiment}
-                    />
-                  </>
-                )}
-              />
-            </>
-          )}
-        />
+       
       </Switch>
-      {/* </div> */}
+     
     </Router>
   );
 }

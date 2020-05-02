@@ -6,6 +6,7 @@
 */
 
 import React from "react";
+import {Link} from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowCircleDown, faStar } from "@fortawesome/free-solid-svg-icons";
 
@@ -14,7 +15,12 @@ function SearchBox(props) {
     <div className="container">
       <div className="row m-3">
         <div className="col-md-4 m-2">
-          {" "}
+          <Link to={{
+                  pathname: "/sentiment",
+                  state:{
+                    app : props.id
+                  }
+                }}>
           <img
             // className="searchAppsImages"
             className="img-responsive m-2  searchAppsImages"
@@ -23,6 +29,9 @@ function SearchBox(props) {
             alt="search app logo"
             src={props.icon}
           />
+          </Link>
+
+          
         </div>
         <div className="col m-2">
           <div className="row m-2">
