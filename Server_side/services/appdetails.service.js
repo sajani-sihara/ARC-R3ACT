@@ -11,7 +11,7 @@ const client = require("../db/mongo").client;
  * Connects to the mongodb Atlas database.
  */
 var db;
-client.connect((err,instance) => {
+client.connect((err, instance) => {
   if (err) {
     // Displaying error message if an error occurs while connecting to the database
     console.log("Error has occured while connecting to database: ", err);
