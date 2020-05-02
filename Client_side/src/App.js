@@ -27,12 +27,13 @@ function App() {
   return (
     <Router>
       {/*  */}
-      <Route path="/sentiment" exact component={Sentiment} />
-      <Route path="/menupage" exact component={MenuPage} />
+     
       <NavBar />
       <Route path="/aboutus" exact component={AboutUs} />
       <Route path="/support" exact component={Support} />
       <Route path="/contact" exact component={Contact} />
+      <Route path="/sentiment" exact component={Sentiment} />
+      <Route path="/menupage" exact component={MenuPage} />
 
       <Switch>
         <Route path="/searchpage" exact component={SearchPage} />

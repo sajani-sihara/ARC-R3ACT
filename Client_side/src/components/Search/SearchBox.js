@@ -28,12 +28,12 @@ function SearchBox(props) {
           <div className="row m-2">
             <h3>{props.title}</h3>{" "}
           </div>
-          <div className="row m-2" style={{ marginTop: "0.5vw" }}>
+          <div className="row m-2">
             <p style={{ fontSize: "1.2rem" }}>{props.developer}</p>
           </div>
           <div
             className="row m-2"
-            style={{ marginTop: "0.5vw", fontSize: "1.2rem" }}
+            style={{ fontSize: "1.2rem" }}
           >
             <p className="mr-3">
               {props.rating}

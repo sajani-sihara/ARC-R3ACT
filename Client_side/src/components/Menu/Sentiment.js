@@ -4,7 +4,9 @@
   Author    - Sajani Sihara
 */
 
-import React from "react";
+import React, {useState,useEffect} from "react";
+import LoadingBox from "../Error/LoadingBox";
+import ErrorPage from "../Error/Crashed";
 import Footer from "../NavigationBar/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -21,6 +23,36 @@ const TITLE = "Sentiment | ARC";
 
 //Function Contact
 function Sentiment() {
+    //props and state for loading
+    const [isLoaded, setIsLoaded] = useState(false);
+    //props and state for error checking
+    const [error, setError] = useState(null);
+    //props and state for retrieve data from api
+    const [items, setItems] = useState([]);
+  
+    //Get localstorage value of appName
+    const app = localStorage.getItem("appName");
+  
+    //fetches the sentiment api for given app id
+    useEffect(() => {
+      fetch("https://arc-r3act.herokuapp.com/sentiment/com.ubercab",{method: "POST"})
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            setIsLoaded(true);
+            setItems(result);
+          },
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        );
+    }, [app]);
+    if (error) {
+      return <ErrorPage errorDet={error.message} />;
+    } else if (!isLoaded) {
+      return <LoadingBox />;
+    } else {
   return (
     <div className="container-fluid" style={{ padding: 0 }}>
       <Helmet>
@@ -34,113 +66,95 @@ function Sentiment() {
           <span className="border">OVERLOOK OF THE MOBILE APP</span>
         </div>
       </div>
-      {/*Adding a div that will hold the comment form */}
-      <div className="descrip-1" style={{ fontSize: "1.3rem" }}>
-        <div class="rowSenti">
-          <div class="columnSenti">
-            <div class="cardSenti">
-              <h3 style={{ fontSize: "1.3rem", paddingBottom: "1vw" }}>
-                background
+      {items.map((item) => (
+      <div className='container'>
+        <div className='row'>
+          <div className='col-lg-6 col-sm-12 p-4'>
+            <div className='card h-100 cardSenti'>
+              <div className='container'>
+                <h3 style={{ fontSize: "1.3rem" ,textAlign:'center',paddingBottom: "1vw" }}>
+                  background
               </h3>
-              <div class="row">
-                <div style={{ float: "left", width: "30%" }}>
+                <div className='row'>
+                  <div className='col'>
                   <img
                     className="img-responsive m-2 ml-5  searchAppsImages"
                     width="100px"
                     height="100px"
                     alt="search app logo"
-                    src={process.env.PUBLIC_URL + "/images/fb.png"}
+                    src={item.icon}
                   />
-                </div>
-                <div
-                  style={{
-                    float: "right",
-                    width: "70%",
-                    textAlign: "left",
-                    paddingLeft: "1vw",
-                  }}
-                >
-                  <p>Facebook</p>
-                  <p>Facebook Developer</p>
+                  </div>
+                  <div className='col'>
+      <p>{item.title}</p>
+      <p>{item.developer}</p>
                   <p style={{ fontStyle: "italic", width: "90%" }}>
-                    "Social media app to connect with friends all over the
-                    world!"
+                   {item.summary}
                   </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="columnSenti">
-            <div class="cardSenti">
-              <h3 style={{ fontSize: "1.3rem", paddingBottom: "1vw" }}>
+          <div className='col-lg-6 col-sm-12 p-4'>
+            <div className='card h-100 cardSenti'>
+              <div className='container'>
+               
+                <h3 style={{ fontSize: "1.3rem" ,textAlign:'center',paddingBottom: "1vw"}}>
                 statistics
               </h3>
-              <div class="row">
-                <div
-                  style={{
-                    float: "left",
-                    width: "50%",
-                    textAlign: "left",
-                    paddingLeft: "4vw",
-                  }}
-                >
-                  <p>
-                    {" "}
-                    <FontAwesomeIcon
+                
+                <div className='row'>
+                  <div className= 'col  p-2'>
+                  <FontAwesomeIcon
                       className="faicon"
                       style={{ color: "#003396" }}
                       icon={faArrowCircleDown}
-                    />{" "}
-                    Downloads
-                  </p>
-                  <p>
-                    <FontAwesomeIcon
+                    />{" "}Downloads
+                  </div>
+      <div className= 'col  p-2'>{item.installs}</div>
+                </div>
+                <div className='row'>
+                  <div className= 'col p-2'>
+                  <FontAwesomeIcon
                       style={{ color: "#1750ac" }}
                       className="faicon"
                       icon={faComments}
-                    />{" "}
-                    Reviews
-                  </p>
-                  <p>
-                    <FontAwesomeIcon
+                    />{" "} Reviews
+                  </div>
+                  <div className= 'col p-2'>
+                  {item.reviews}
+                  </div>
+                </div>
+                <div className='row'>
+                  <div className= 'col p-2'><FontAwesomeIcon
                       style={{ color: "#3373c4" }}
                       className="faicon"
                       icon={faTags}
                     />{" "}
-                    Price
-                  </p>
-                  <p>
-                    <FontAwesomeIcon
+                    Price</div>
+      <div className= 'col p-2'>{item.priceText}</div>
+                </div>
+                <div className='row'>
+                  <div className= 'col p-2'>
+                  <FontAwesomeIcon
                       style={{ color: "#5494da" }}
                       className="faicon"
                       icon={faDownload}
                     />{" "}
                     Size
-                  </p>
-                </div>
-                <div
-                  style={{
-                    float: "left",
-                    width: "50%",
-                    textAlign: "left",
-                    paddingLeft: "5vw",
-                  }}
-                >
-                  <p>100,000,000+</p>
-                  <p>3,000,000+</p>
-                  <p>Free</p>
-                  <p>60.0 MB</p>
+                  </div>
+                  <div className= 'col p-2'>{item.size} MB</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        <div class="rowSenti">
-          <div class="columnSenti">
-            <div class="cardSenti">
-              <h3 style={{ fontSize: "1.3rem", paddingBottom: "1vw" }}>
+        <div className='row'>
+          <div className='col-lg-6 col-sm-12 p-4 '>
+            <div className='card h-100 cardSenti'>
+              <div className='container'>
+              <h3 style={{ fontSize: "1.3rem", textAlign:'center',paddingBottom: "1vw"}}>
                 ratings
               </h3>
               <p class="heading">
@@ -154,113 +168,121 @@ function Sentiment() {
               <p style={{ textAlign: "left" }}>
                 4.1 average based on 254 reviews.
               </p>
+              </div>
               <hr style={{ border: "3px solid #f1f1f1" }} />
 
-              <div class="row">
-                <div class="side">
-                  <div>5 star</div>
-                </div>
-                <div class="middle">
-                  <div class="bar-container">
-                    <div class="bar-5"></div>
+              <div className='container'>
+                <div className='row'>
+                  <div className='col'>5 Star</div>
+                  <div className='col'>
+                      <div className="progress">
+                    <div className="progress-bar progress-bar-striped" role="progressbar" style={{width: "50%"}} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div> 
                   </div>
+                  <div className='col'>150</div>
                 </div>
-                <div class="side right">
-                  <div>150</div>
-                </div>
-                <div class="side">
-                  <div>4 star</div>
-                </div>
-                <div class="middle">
-                  <div class="bar-container">
-                    <div class="bar-4"></div>
+                <div className='row'>
+                  <div className='col'>4 Star</div>
+                  <div className='col'>
+                  <div className="progress">
+                <div className="progress-bar progress-bar-striped" role="progressbar" style={{width: "50%"}} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+              </div> 
                   </div>
+                  <div className='col'>65</div>
                 </div>
-                <div class="side right">
-                  <div>63</div>
-                </div>
-                <div class="side">
-                  <div>3 star</div>
-                </div>
-                <div class="middle">
-                  <div class="bar-container">
-                    <div class="bar-3"></div>
+                <div className='row'>
+                  <div className='col'> 3 Star</div>
+                  <div className='col'>
+                  <div className="progress">
+                <div className="progress-bar progress-bar-striped" role="progressbar" style={{width: "50%"}} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+              </div> 
                   </div>
+                  <div className='col'>15</div>
                 </div>
-                <div class="side right">
-                  <div>15</div>
-                </div>
-                <div class="side">
-                  <div>2 star</div>
-                </div>
-                <div class="middle">
-                  <div class="bar-container">
-                    <div class="bar-2"></div>
+                <div className='row'>
+                  <div className='col'>2 Star</div>
+                  <div className='col'>
+                  <div className="progress">
+                <div className="progress-bar progress-bar-striped" role="progressbar" style={{width: "50%"}} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+              </div> 
                   </div>
+                  <div className='col'>6</div>
                 </div>
-                <div class="side right">
-                  <div>6</div>
-                </div>
-                <div class="side">
-                  <div>1 star</div>
-                </div>
-                <div class="middle">
-                  <div class="bar-container">
-                    <div class="bar-1"></div>
+                <div className='row'>
+                  <div className='col'>1 Star</div>
+                  <div className='col'>
+                  <div className="progress">
+                <div className="progress-bar progress-bar-striped" role="progressbar" style={{width: "50%"}} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+              </div> 
                   </div>
-                </div>
-                <div class="side right">
-                  <div>20</div>
+                  <div className='col'>15</div>
                 </div>
               </div>
+              
             </div>
           </div>
-
-          <div class="columnSenti">
-            <div class="cardSenti">
-              <h3 style={{ fontSize: "1.3rem", paddingBottom: "2vw" }}>
-                reviews
-              </h3>
-              <p style={{ paddingBottom: "1vw" }}>
-                User reviews regarding this application are categorised into two
-                sections - bug fixes and feature requests. You can view the
-                related reviews using the options below.
-              </p>
-              <div class="row">
-                <div style={{ float: "left", width: "50%", paddingLeft:"2.5vw", paddingBottom:"2vw" }}>
-                  <button
-                    className="card p-3"
-                    style={{
-                      fontSize: "0.9rem",
-                      fontWeight: 600,
-                      textTransform: "uppercase",
-                      width:"15vw"
-                    }}
-                  >
-                    Bug Fixes
-                  </button>
+          <div className='col-lg-6 col-sm-12 p-4'>
+            <div className='card h-100 cardSenti'>
+              <div className='container'>
+                <div className='row'>
+                  <div className='col'>
+                  <h3 style={{ fontSize: "1.3rem",textAlign:'center',paddingBottom: "1vw"}}>
+                    reviews
+                  </h3>
+                  </div>
                 </div>
-                <div style={{ float: "right", width: "50%" }}>
-                  <button
-                    className="card p-3"
-                    style={{
-                      fontSize: "0.9rem",
-                      fontWeight: 600,
-                      textTransform: "uppercase",
-                      width:"15vw"
-                    }}
-                  >
-                    Feature Requests
-                  </button>
+                <div className='row'>
+                  <div className='col'>
+                    <p>
+                      User reviews regarding this application are categorised into two
+                      sections - bug fixes and feature requests. You can view the
+                      related reviews using the options below.
+                    </p>
+                  </div>
+                </div>
+                <div className='row'>
+                  <div className='col-lg-6 col-sm-12 p-3'>
+                    <button       
+                    className="btn btn-secondary form-control"
+                      style={{
+                        
+                        fontWeight: 600,
+                        textTransform: "uppercase",
+                        
+                      }}
+                    >
+                      Bug Fixes
+                    </button>
+                  </div>
+                  <div className='col-lg-6 col-sm-12 p-3'>
+                    <button
+                      className="btn btn-secondary form-control"
+                      style={{
+                     
+                        fontWeight: 600,
+                        textTransform: "uppercase",
+                       
+                      }}
+                    >
+                      Feature Requests
+                    </button>
+                  </div>
+                  
+                 
+                  
                 </div>
               </div>
             </div>
           </div>
         </div>
+
       </div>
+      ))}
       {/*adding the footer component */}
       <Footer />
     </div>
+  
   );
+}
 }
 export default Sentiment;

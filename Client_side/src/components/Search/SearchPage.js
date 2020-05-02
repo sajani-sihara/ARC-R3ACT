@@ -23,7 +23,7 @@ function SearchPage(props) {
   const app = props.match.params.app;
 
   //URL for calling the api for searching in the server,application id needs to be appended
-  const url = "http://localhost:5000/search/whatsapp";
+  const url = "https://localhost:5000/search/pickme";
 
   //fetches the api call from the server
   useEffect(() => {
@@ -50,7 +50,7 @@ function SearchPage(props) {
       <div className="row px-5 pb-4" key={i}>
         {row.map((item) => (
           <div
-            className="col-lg-5 mx-5 border-bottom border-secondary"
+            className="col-lg-6 mx-5 mx-sm-0 border-bottom border-secondary"
             key={item}
           >
             <SearchBox
