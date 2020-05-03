@@ -20,7 +20,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 class FeatureRequestPage extends React.Component {
 
   TITLE = "Feature Requests | ARC";
-  currentURL = "http://localhost:3000/frpage/";
+  currentURL = "http://arc-r3act.herokuapp.com/frpage/";
   //Store the API call
   urlString = "";
   constructor(props) {
