@@ -8,13 +8,14 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowCircleDown, faStar,faLaptopCode } from "@fortawesome/free-solid-svg-icons";
+import { faArrowCircleDown, faStar} from "@fortawesome/free-solid-svg-icons";
 
 function SearchBox(props) {
   return (
     <div className="container">
       <div className="row m-3">
         <div className="col-md-4 m-2">
+          {/*Links the app image to the sentiment page */}
           <Link to={{
             pathname: "/sentiment/"+props.id,
             state: {
@@ -22,7 +23,6 @@ function SearchBox(props) {
             }
           }}>
             <img
-              // className="searchAppsImages"
               className="img-responsive m-2  searchAppsImages"
               width="100px"
               height="100px"
@@ -61,11 +61,6 @@ function SearchBox(props) {
         </div>
         <div className="col-6">{/**Stars */}</div>
       </div>
-      {/* <div className="row m-3">
-        <div className="col">
-          <p style={{ fontSize: "1.2rem",fontStyle:'Italic' }}>"{props.summary}"</p>
-        </div>
-      </div> */}
     </div>
   );
 }
