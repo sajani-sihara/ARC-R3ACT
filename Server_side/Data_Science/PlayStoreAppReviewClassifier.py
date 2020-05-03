@@ -273,31 +273,6 @@ class PlayStoreAppReviewClassifier:
             idNum += 1
             clusteredReviews.append(clusterReview)
             i += 1
-        # initializing the variable to an empty set
-        setIDs = set()
-        # used to identify the ids of the reviews that are not grouped according to the keyword extracted
-        for reviewIDs in keywordsReviewIDs:
-            # adding the review ids that are in the list to a set
-            for reviewID in reviewIDs:
-                setIDs.add(reviewID)
-        # initializing an array to store the ids that are not clustered
-        remainingID = []
-        # declaring a variable used to sentiment of the non clustered reviews
-        sentimentScore = 0
-        # calculating the sentiment of the non grouped reviews
-        for i in range(len(df["_id"])):
-            # if the id is not in the set then they are added to the array
-            if df["_id"].iloc[i] not in setIDs:
-                remainingID.append(df["_id"].iloc[i])
-                # and the sentiment of the review is added
-                sentimentScore += df["svr_sentiment"].iloc[i]
-        # the keyword is "" is to indicate they are not grouped
-        keyword = ""
-        # making a dict for the remaining reviews
-        clusterReview = {"_id": str(idNum), "keyword": keyword, "reviewIDs": remainingID,
-                         "sentiment_score": sentimentScore}
-        # appending to an array
-        clusteredReviews.append(clusterReview)
         # return the array of dicts
         return clusteredReviews
 
