@@ -16,7 +16,7 @@ function SearchBox(props) {
       <div className="row m-3">
         <div className="col-md-4 m-2">
           <Link to={{
-            pathname: "/sentiment",
+            pathname: "/sentiment/"+props.id,
             state: {
               app: props.id
             }
