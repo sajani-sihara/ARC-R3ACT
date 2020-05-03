@@ -13,7 +13,7 @@ def getReviews(packageName, size):
     import sys
     #
     # calls to the api from nodenpm package
-    resp = requests.get("http://localhost:3000/api/apps/" + packageName + "/reviews/?num=" + size)
+    resp = requests.get("http://arc-r3act.herokuapp.com/api/apps/" + packageName + "/reviews/?num=" + size)
     #
     # # checks if the api works; returns 200
     print(resp.status_code)

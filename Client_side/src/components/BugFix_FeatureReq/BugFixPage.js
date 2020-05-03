@@ -19,7 +19,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 class BugFixPage extends React.Component {
 
   TITLE = "Bug Fixes | ARC";
-  currentURL = "http://localhost:3000/bfpage/";
+  currentURL = "http://arc-r3act.herokuapp.com/bfpage/";
   //Store the API call
   urlString = "";
   constructor(props) {
