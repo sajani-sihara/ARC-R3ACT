@@ -130,7 +130,7 @@ class PlayStoreAppReviewClassifier:
                 # appended to the json object created above
                 lowerCaseSplitReview = review['text'].lower().split(" ")
                 splitReview = review['text'].split(" ")
-                if (len(keywords[i]) != 0):
+                if len(keywords[i]) != 0:
                     lastKeyword = keywords[i][len(keywords[i]) - 1]
                     try:
                         indexOfLastKey = lowerCaseSplitReview.index(lastKeyword)
@@ -233,8 +233,7 @@ class PlayStoreAppReviewClassifier:
                 keywordsReviewIDs.append(reviewIDs)
             # the function returns an array of dicts, the dict has an id, keyword,
             # list of ids that have the keyword and the sentiment of the keyword
-            clusteredIds = self.__insert_clustered_reviews(keywordsReviewIDs, keywords, sentimentKeywords,
-                                                           clusteredReviews)
+            clusteredIds = self.__insert_clustered_reviews(keywordsReviewIDs, keywords, sentimentKeywords)
             # create the json object used to store the app details
             if mbDetails is not None:
                 mbDetails.update({clusterName: clusteredIds})
@@ -260,7 +259,7 @@ class PlayStoreAppReviewClassifier:
                 keywords.append(token.text)
         return keywords
 
-    def __insert_clustered_reviews(self, keywordsReviewIDs, keywords, sentimentKeywords, df):
+    def __insert_clustered_reviews(self, keywordsReviewIDs, keywords, sentimentKeywords):
         # initializing the index
         i = 0
         # idNum is used to calculate the id
