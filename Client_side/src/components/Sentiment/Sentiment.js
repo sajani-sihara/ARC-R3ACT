@@ -30,10 +30,9 @@ class Sentiment extends React.Component {
   TITLE = "Sentiment | ARC";
   constructor(props) {
     super(props);
-    const location = this.props.location;
-
-    const { appId } = location.state;
+    const appId = this.props.match.params.appId;
     localStorage.setItem("appName", appId)
+
     this.state = {
       error: {},
       isLoaded: false,
@@ -41,7 +40,7 @@ class Sentiment extends React.Component {
       items: { sent: true },
       app: appId
     };
-    const {appId} = this.props.match.params.appId;
+
     this.urlString = "https://arc-r3act.herokuapp.com/app/" + appId;
     this.sentiURLString = "https://arc-r3act.herokuapp.com/sentiment/" + appId;
     console.log("this.urlString", this.urlString);
@@ -89,11 +88,11 @@ class Sentiment extends React.Component {
     this.setState({ details: result });
     if (!result.wait) {
       clearInterval(this.fetchInterval);
-      if (result.message==="Sorry! The number of reviews is less than 100.") {
+      if (result.message === "Sorry! The number of reviews is less than 100.") {
         this.setState({ isLoaded: true });
-      }else{
+      } else {
         this.getItems(this.sentiURLString);
-      }   
+      }
     }
   }
   getItems(urlString) {
@@ -206,7 +205,7 @@ function BackgroundDiv(props) {
             />
           </div>
           <div className="col-lg-8">
-            <p style={{textTransform:'uppercase'}}>{data.title}</p>
+            <p style={{ textTransform: 'uppercase' }}>{data.title}</p>
             <p>Developer : {data.developer}</p>
             <p style={{ fontStyle: "italic", width: "90%", textAlign: "justify" }}>"{data.summary}"</p>
           </div>
@@ -412,7 +411,7 @@ function ReviewsDiv(props) {
         </div>
         <div className="row">
           <div className="col">
-            <p style={{textAlign:'justify'}}>
+            <p style={{ textAlign: 'justify' }}>
               User reviews regarding this application are categorised into two
               sections - bug fixes and feature requests. You can view the
               related reviews using the options below.
