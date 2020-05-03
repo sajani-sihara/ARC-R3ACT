@@ -34,10 +34,16 @@ class FeatureRequestPage extends React.Component {
       keywords: { sent: false },
       appId: ""
     };
+
+    //search parameter for the current url location
     const values = this.props.location.search;
+    //appId parsed to the url corresponding to the dynamic segments of the path
     this.state.appId = this.props.match.params.appId;
+    //string of the current url
     this.currentURL = this.currentURL + this.state.appId;
     this.urlString = "https://arc-r3act.herokuapp.com/featurereqs/" + this.state.appId;
+
+    //checks if the keyword query holds a value
     if (values === "") {
       const { keywords } = this.state;
       if (keywords && !keywords.sent) {
@@ -49,12 +55,15 @@ class FeatureRequestPage extends React.Component {
       }
     } else {
       const keyword = queryString.parse(values).keyword;
+      //checks if the keyword query returns not a null or type is  not undefined
       if (typeof (keyword) !== 'undefined' || keyword != null) {
         const keyword = queryString.parse(values).keyword;
         this.state.keyword = keyword;
+        //url for the server api for reviews for that keyword
         const newUrlString = this.urlString + "/" + keyword
         const { keywords } = this.state;
         if (keywords && !keywords.sent) {
+          //api to retrieve common keywords to the side nav
           this.getKeywords(this.urlString + "/keywords");
           const { items } = this.state;
           if (items && !items.sent) {
@@ -67,6 +76,7 @@ class FeatureRequestPage extends React.Component {
     }
 
   }
+  //Method for API to retriev the common keyword list
   getKeywords(urlString) {
     fetch(urlString, {
       method: "POST"
@@ -82,6 +92,7 @@ class FeatureRequestPage extends React.Component {
       );
   }
 
+  //Method for API to retrieve reviews
   getItems(urlString) {
     fetch(urlString, {
       method: "POST"

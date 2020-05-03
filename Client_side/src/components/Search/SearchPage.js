@@ -12,7 +12,6 @@ import SearchBox from "./SearchBox";
 import "../../App.css";
 import Footer from "../NavigationBar/Footer";
 import { Helmet } from "react-helmet";
-import { Link} from "react-router-dom";
 const TITLE = "Search Apps | ARC";
 
 function SearchPage(props) {
@@ -42,6 +41,7 @@ function SearchPage(props) {
         }
       );
   }, [url]);
+  //Items are displayed in a two column grid
   const Items = () => {
     const rows = [...Array(Math.ceil(items.length / 2))];
     const itemRows = rows.map((row, i) => items.slice(i * 2, i * 2 + 2));

@@ -51,7 +51,7 @@ function ReviewBox(props) {
                 >
                   View Full Review
                 </Button>
-                <MyVerticallyCenteredModal
+                <VerticallyCenteredModal
                   items={item}
                   show={modalShow}
                   onHide={() => setModalShow(false)}
@@ -64,7 +64,7 @@ function ReviewBox(props) {
     </div>
   );
 }
-function MyVerticallyCenteredModal(props) {
+function VerticallyCenteredModal(props) {
 
   const { items } = props;
 
