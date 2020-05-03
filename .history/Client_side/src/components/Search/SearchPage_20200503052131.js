@@ -23,7 +23,7 @@ function SearchPage(props) {
   const appId = props.match.params.appId;
 
   //URL for calling the api for searching in the server,application id needs to be appended
-  const url = "http://https://arc-r3act.herokuapp.com/search/"+appId;
+  const url = "http://localhost:5000/search/"+appId;
 
   //fetches the api call from the server
   useEffect(() => {

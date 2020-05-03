@@ -42,8 +42,8 @@ class Sentiment extends React.Component {
       app: appId
     };
     //const {appId} = this.props.match.params.appId;
-    this.urlString = "http://https://arc-r3act.herokuapp.com/app/" + appId;
-    this.sentiURLString = "http://https://arc-r3act.herokuapp.com/sentiment/" + appId;
+    this.urlString = "http://localhost:5000/app/" + appId;
+    this.sentiURLString = "http://localhost:5000/sentiment/" + appId;
     console.log("this.urlString", this.urlString);
 
     const { details } = this.state;

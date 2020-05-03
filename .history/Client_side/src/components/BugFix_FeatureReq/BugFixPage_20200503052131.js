@@ -1,9 +1,8 @@
 /* 
-  Page      - Feature.js page
+  Page      - BugFix.js page
   Function  - Shows the bug fix keywords relevant to the chosen app
   Author    - Sajani Sihara, Ridmi Amasha
 */
-
 
 import React from "react";
 import LoadingBox from "../Error/LoadingBox";
@@ -17,27 +16,26 @@ import queryString from 'query-string'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
-class FeatureRequestPage extends React.Component {
+class BugFixPage extends React.Component {
 
-  TITLE = "Feature Requests | ARC";
-  currentURL = "http://localhost:3000/frpage/";
+  TITLE = "Bug Fixes | ARC";
+  currentURL = "http://localhost:3000/bfpage/";
   //Store the API call
   urlString = "";
   constructor(props) {
     super(props);
-    console.log(this.TITLE);
     this.state = {
       error: {},
       isLoaded: false,
-      items: { sent: false },
-      keyword: "",
       keywords: { sent: false },
+      keyword: "",
+      items: { sent: false },
       appId: ""
     };
     const values = this.props.location.search;
     this.state.appId = this.props.match.params.appId;
     this.currentURL = this.currentURL + this.state.appId;
-    this.urlString = "http://https://arc-r3act.herokuapp.com/featurereqs/" + this.state.appId;
+    this.urlString = "http://localhost:5000/bugfixes/" + this.state.appId;
     if (values === "") {
       const { keywords } = this.state;
       if (keywords && !keywords.sent) {
@@ -105,7 +103,7 @@ class FeatureRequestPage extends React.Component {
   }
   //Checks if the results have been fetched
   handleItemsSuccess(result) {
-    console.log("items", result);
+    console.log("item", result);
     this.setState({ items: result });
     if (result.sent) {
       this.setState({ isLoaded: true });
@@ -113,15 +111,16 @@ class FeatureRequestPage extends React.Component {
   }
 
 
+
   render() {
     const { isLoaded, error, items, keyword, keywords} = this.state;
     let pageTitle;
 
     if (!keyword) {
-      pageTitle = "Feature Requests for " + keywords.appName;
+      pageTitle = "Bug fixes for " + keywords.appName;
     } else {
       let cKeyword = keyword.charAt(0).toUpperCase() + keyword.slice(1)
-      pageTitle = '"' + cKeyword + '" feature requests for ' + keywords.appName;
+      pageTitle = '"' + cKeyword + '" bug fixes for ' + keywords.appName;
     }
 
     if ((error && error.message)) {
@@ -137,7 +136,7 @@ class FeatureRequestPage extends React.Component {
           </Helmet>
 
           {/*Adding the background image*/}
-          <div className="bgimg-15">
+          <div className="bgimg-14" id="pic1">
             {/*Adding the main heading */}
             <div className="caption">
               <span className="border">{pageTitle}</span>
@@ -150,7 +149,7 @@ class FeatureRequestPage extends React.Component {
               <div className="container-fluid">
                 <div className="row" style={{ width: "fit-content" }}>
                   <div className="col-2" >
-                    <p className="sidenav-title">View reviews by category</p>
+                  <p className="sidenav-title">View reviews by category</p>
                     <div className="sidenav">
                       <a href={this.currentURL}>All Reviews</a>
                       {keywords && keywords.keywords && keywords.keywords.map((keyword) => (
@@ -160,7 +159,7 @@ class FeatureRequestPage extends React.Component {
                   </div>
                   <div className="col-10">
                     {items && items.reviewsArray && items.reviewsArray.map((review) => (
-                      <ReviewBox item={review} key={review._id} />
+                      <ReviewBox item={review} key={review._id}/>
                     ))}
                   </div>
                 </div>
@@ -183,4 +182,4 @@ class FeatureRequestPage extends React.Component {
 
   }
 }
-export default FeatureRequestPage;
+export default BugFixPage;

@@ -37,7 +37,7 @@ class FeatureRequestPage extends React.Component {
     const values = this.props.location.search;
     this.state.appId = this.props.match.params.appId;
     this.currentURL = this.currentURL + this.state.appId;
-    this.urlString = "http://https://arc-r3act.herokuapp.com/featurereqs/" + this.state.appId;
+    this.urlString = "http://localhost:5000/featurereqs/" + this.state.appId;
     if (values === "") {
       const { keywords } = this.state;
       if (keywords && !keywords.sent) {
