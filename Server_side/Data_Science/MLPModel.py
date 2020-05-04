@@ -10,13 +10,15 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 # A Neural Network Classifier based of Multi Layer Perceptron
 from sklearn.neural_network import MLPClassifier
 
-#from Server_side.Data_Science.FeatureExtraction import FeatureExtraction
-#from Server_side.Data_Science.PreProcess import PreProcess
+# from Server_side.Data_Science.FeatureExtraction import FeatureExtraction
+# from Server_side.Data_Science.PreProcess import PreProcess
 
 from FeatureExtraction import FeatureExtraction
 from PreProcess import PreProcess
+
+
 class MLPModel:
-    
+
     # function used to train the MLP model used to cluster reviews to 3 clusters common, bug fixes and feature requests
     @staticmethod
     def trainMLPModel():
@@ -58,7 +60,7 @@ class MLPModel:
         dirname = os.path.dirname(__file__)
         filename = os.path.join(dirname, 'MLModels/TfidfVect.pk')
         # load the vectorizer that was previously saved
-        file=open(filename, 'rb')
+        file = open(filename, 'rb')
         vectorizer = pickle.load(file)
         file.close()
         # used to convert words from Test data into a matrix of integers
@@ -69,7 +71,7 @@ class MLPModel:
         vec_file.close()
         # load the MLP model previously saved
         filename = os.path.join(dirname, 'MLModels/MLP_Model.sav')
-        file=open(filename, 'rb')
+        file = open(filename, 'rb')
         model = pickle.load(file)
         file.close()
         # the name of the clusters, reviews are separated to
@@ -105,4 +107,3 @@ class MLPModel:
         keywords_list = FeatureExtraction.find_keywords(fe_preprocessedReviews)
         # The predicted label results, the list of keywords and the array of reviews that were further preprocessed are returned.
         return {"cluster_Results": result, "keywords": keywords_list, "fe_preprocessedReviews": fe_preprocessedReviews}
-

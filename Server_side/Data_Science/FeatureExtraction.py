@@ -5,6 +5,7 @@
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 
+
 class FeatureExtraction:
 
     @staticmethod
@@ -74,10 +75,10 @@ class FeatureExtraction:
     # append the labels of the given array to an array and return it
     @staticmethod
     def convertToArray(new_list):
-        #initializing the array
+        # initializing the array
         keyword_list = []
-        #using the for loop to append the elements 
+        # using the for loop to append the elements
         for index in new_list:
             keyword_list.append(index)
-        #returning the keyword list
+        # returning the keyword list
         return keyword_list

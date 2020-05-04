@@ -7,6 +7,7 @@ import unittest
 from Server_side.Data_Science.PreProcess import PreProcess
 from Server_side.Data_Science.SentimentAnalysis import SentimentAnalysis
 
+
 # when running the file line 11 in SentimentAnalysis.py needs to uncommented and line 12 needs to be commented
 class TestSentimentAnalysis(unittest.TestCase):
 
@@ -31,6 +32,7 @@ class TestSentimentAnalysis(unittest.TestCase):
         # the accuracy and determine the overall sentiment of the given data
         values = SentimentAnalysis.predict_sentiment(self.testData, self.testLabel)
         self.assertEqual(values["overall_sentiment"], 117.33776818246992)
+
 
 # used to start the test
 if __name__ == '__main__':

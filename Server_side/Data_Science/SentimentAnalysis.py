@@ -8,11 +8,12 @@ import os
 import numpy as np
 from sklearn.metrics import r2_score, mean_squared_error
 
-#from Server_side.Data_Science.PreProcess import PreProcess
+# from Server_side.Data_Science.PreProcess import PreProcess
 from PreProcess import PreProcess
 
+
 class SentimentAnalysis:
-    
+
     # used to train the machine learning model 
     # used for sentiment analysis using preprocessed 
     # reviews and the sentiment identified by the lexicon
@@ -22,8 +23,8 @@ class SentimentAnalysis:
         file = open('Data_Science/TrainingDataSet/LabelledData.csv', 'r')
         # all the records in the file are converted to a 2d array
         data = list(csv.reader(file, delimiter=','))
-        #initializing 2 arrays one to store the preprocessed reviews
-        #and the other to store the sentiments identified by the lexicon resource
+        # initializing 2 arrays one to store the preprocessed reviews
+        # and the other to store the sentiments identified by the lexicon resource
         trainData = []
         trainLabel = []
         # # append the pre-processed the review and the sentiment, to trainData and trainLabel
@@ -90,12 +91,12 @@ class SentimentAnalysis:
         index = sentiment_score.index(senti_score)
         # convert the predicted list to an array
         predicted = np.array(predicted)
-        #used to identify the confindence of the model
-        r2_score_value=r2_score(testLabel, predicted)
-        #used to identify the confindence of the model
-        mean_squared_error_value=mean_squared_error(testLabel, predicted)
-        #the rating is identified using the array star_rating and index
-        rating=star_rating[index]
+        # used to identify the confindence of the model
+        r2_score_value = r2_score(testLabel, predicted)
+        # used to identify the confindence of the model
+        mean_squared_error_value = mean_squared_error(testLabel, predicted)
+        # the rating is identified using the array star_rating and index
+        rating = star_rating[index]
         return {'overall_sentiment': ovrll_sentiment, 'predicted': predicted, 'rating': rating,
                 'r2_score': r2_score_value,
-                'mean_square_error':mean_squared_error_value }
+                'mean_square_error': mean_squared_error_value}

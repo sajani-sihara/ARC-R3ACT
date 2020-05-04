@@ -6,17 +6,18 @@ import emoji
 import re
 import spacy
 
+
 # Creating a class
 class PreProcess:
-     #Load the spacy model to check all the words that do not come under english dictionary
+    # Load the spacy model to check all the words that do not come under english dictionary
     nlp = spacy.load('en_core_web_sm')
-    #Getting all the alphabets lowercase letters into a list 
+    # Getting all the alphabets lowercase letters into a list
     alpha = list(string.ascii_lowercase)
-   
+
     # function used to pre_process a review depending on which type of algorithm is going to use the corpus.
     @staticmethod
     def pre_process_review(review, level):
-        #if the reviews is None then "" is returned else the preprocessing takes place
+        # if the reviews is None then "" is returned else the preprocessing takes place
         if review is not None:
             # Assigning the review to pre_processed review
             pre_processed_review = review
@@ -25,8 +26,10 @@ class PreProcess:
                 pre_processed_review = PreProcess.pre_processing_labelled_data(review)
             elif level == "cluster":
                 # preprocessing required by the MLP model used to cluster the reviews
-                pre_processed_review = PreProcess.reg_preprocessing(review) # Calling the MLP model's Preprocess function for the unpreprocessed review
-                pre_processed_review = PreProcess.pre_processing_labelled_data(pre_processed_review) # Calling the labelled data Preprocessing function for the unpreprocessed review
+                pre_processed_review = PreProcess.reg_preprocessing(
+                    review)  # Calling the MLP model's Preprocess function for the unpreprocessed review
+                pre_processed_review = PreProcess.pre_processing_labelled_data(
+                    pre_processed_review)  # Calling the labelled data Preprocessing function for the unpreprocessed review
             elif level == "lexicon":
                 # pre_processing required for the lexicon sentiment analysis
                 # Preprocessing reviews to convert emojis to rextual format
@@ -36,10 +39,10 @@ class PreProcess:
             elif level == "fe":
                 pre_processed_review = PreProcess.preprocessing_fe(review)
             # Returning the preprocessed reviews
-            return pre_processed_review 
+            return pre_processed_review
         else:
             # returning nothing if there was no review given
-         return ""
+            return ""
 
     @staticmethod
     def remove_whitespace(text):
@@ -50,9 +53,10 @@ class PreProcess:
     @staticmethod
     def de_emojize(text):
         '''Demojize the emojis in a text for better sentiment scores'''
-        return emoji.demojize(text)    
+        return emoji.demojize(text)
 
-    # convert a list to string
+        # convert a list to string
+
     @staticmethod
     def listToString(s):
         # using a built-in function to convert a array/list to String
@@ -100,8 +104,8 @@ class PreProcess:
     @staticmethod
     def preprocessing_fe(notProcessedText):
         # check if review was given then do the following functions
-        if notProcessedText is not None: 
-             # tokenizing the string and removing the stop words
+        if notProcessedText is not None:
+            # tokenizing the string and removing the stop words
             doc = PreProcess.nlp(notProcessedText)
             clean_text = ""
             for token in doc:
@@ -116,9 +120,9 @@ class PreProcess:
                 if edit != "" and flag:
                     clean_text = clean_text + edit + " "
                     # return the cleaned text
-            return clean_text 
+            return clean_text
         else:
-             # otherwise return an empty string
+            # otherwise return an empty string
             return ""
 
     # pre-processing required by the SVR/MLP
@@ -154,7 +158,7 @@ class PreProcess:
                     i = str(i)
                     if i.lower() in PreProcess.alpha:
                         clean_text.remove(i)
-                        
+
             return PreProcess.listToString(clean_text)
         # return the cleaned text after converting the list of words to string
         else:

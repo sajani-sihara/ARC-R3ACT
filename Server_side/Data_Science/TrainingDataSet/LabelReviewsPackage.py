@@ -3,7 +3,7 @@
 # pip install csv, pickle, vaderSentiment
 import csv
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-from Data_Science.PreProcessing import *
+from Server_side.Data_Science.PreProcess import PreProcess
 
 
 # Author - Ridmi
@@ -45,7 +45,7 @@ def label_reviews(file_name, packageName, size):
     for i in range(len(review_list)):
         print(i)
         # preprocess the review
-        preProcessedText = pre_process_review(review_list[i],"lexicon")
+        preProcessedText = PreProcess.pre_process_review(review_list[i], "lexicon")
         # get the polarity scores from the vader Sentiment Analyzer. This returns neu, neg and pos scores
         results = vaderSentimentAnalyzer.polarity_scores(preProcessedText)
         # the score of the results["neg"] is positive hence to make

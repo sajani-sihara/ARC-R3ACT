@@ -31,22 +31,21 @@ exports.storeDetails = async function (request, response) {
       appId: request.params.appId,
     });
     if (detailsResult != null) {
-      return response.status(200).send({ wait: false });
-      // // Store the data and time data was stored into the database
-      // var timestamp = new Date(detailsResult.date_uploaded);
+      // Store the data and time data was stored into the database
+      var timestamp = new Date(detailsResult.date_uploaded);
 
-      // // Store the current data and time into a variable
-      // var currentTime = new Date();
+      // Store the current data and time into a variable
+      var currentTime = new Date();
 
-      // var timeDif = diff_minutes(timestamp, currentTime);
+      var timeDif = diff_minutes(timestamp, currentTime);
 
-      // if (timeDif < 20) {
-      //   return response.status(200).send({ wait: false });
-      // } else {
-      //   // Start processging the reviews again if the
-      //   // time difference is greater than 20
-      //   processAgain = true;
-      // }
+      if (timeDif < 40) {
+        return response.status(200).send({ wait: false });
+      } else {
+        // Start processging the reviews again if the
+        // time difference is greater than 20
+        processAgain = true;
+      }
     } else {
       processAgain = true;
     }
